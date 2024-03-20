@@ -1,14 +1,22 @@
-
+import { useState } from 'react';
 import './App.css'
 
-function App() {  
-  function newText(event: any) {
-    event.target.textContent = 'New text';
-    console.log(event);
-  }
-  return (
-    <div onClick={newText}>New Project</div>
-  )
+function App() {
+  const [text, setText] = useState('');  
+  const [listItems, setListItems] = useState<string[]>([]);
+  
+console.log(text);
+  return (    
+    <>
+      <input type="text" value={text} onChange={(e: any) => setText(e.target.value)}/>
+      <button onClick={() => setListItems([...listItems, text])}>Отправить</button>
+      <ol>
+        {listItems.map((el) => (
+          <li>{el}</li>
+        ))}
+      </ol>
+    </>
+  );
 }
 
 export default App
