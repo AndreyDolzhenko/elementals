@@ -4,3 +4,31 @@
   padding: 2rem;
   text-align: center;
 }
+li{
+  text-align: initial;
+  color: brown;
+  margin-bottom: 5px;
+}
+span{
+  margin: 0 20px 0 0;
+}
+.deleteLi{
+  float: right;
+    background: burlywood;
+    color: antiquewhite;
+    border-radius: 50%;
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.deleteLi:hover{
+  float: right;
+    background: antiquewhite;
+    color: burlywood;
+    border-radius: 50%;
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}

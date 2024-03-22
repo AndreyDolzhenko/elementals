@@ -4,32 +4,38 @@ import './App.css'
 function App() {
   const [text, setText] = useState('');  
   const [listItems, setListItems] = useState<string[]>([]);
-
-  let getCo;
-  function getContent(content: any) {
-    return (
-      <li>{content}</li>      
-    );
+  
+  function completionOfInput(content: any) {   
+    if (content.key == 'Enter' || content.target.value == 'button') {           
+      setListItems([...listItems, text]);       
+      setText('');   
+    }
   }
- 
-console.log(text);
+
+  function createLi(arr: []) {
+    return (
+    arr.map((el, index) => (<li id={String (index)} key={index}>{el}{deleteLi(index)}</li>))
+    )
+  }
+
+  function deleteLi(idText: any){
+    return(
+      <><div className='deleteLi' onClick={() => document.getElementById(`${idText}`).remove()}>X</div></>
+    )
+  }
+  
   return (    
-    <>    
+    <>     
+      <input type="text" value={text}
+      onKeyUp={(e: any) => (completionOfInput(e))}
+      onChange={(e: any) => (setText(e.target.value))}
+      />
+      <button value="button"
+        onClick={(e: any) => completionOfInput(e)}        
+      >Отправить</button>
       
-      <input type="text" value={text} onChange={(e: any) => (
-        setText(e.target.value)
-        )}/>
-      <button onClick={() => (
-        // setListItems([...listItems, text])
-        getCo = getContent(text)
-        // console.log(getContent(text))
-        )}>Отправить</button>
-        
-      <ol>   
-        {getCo}     
-        {/* {listItems.map((el) => (
-          <li>{el}</li>
-        ))} */}
+      <ol >              
+        {createLi(listItems)}
       </ol>
     </>
   );
