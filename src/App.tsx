@@ -9,26 +9,16 @@ function App() {
   
   function completionOfInput(content: any) {   
     if (content.key == 'Enter' || content.target.value == 'button') {           
-      setListItems([...listItems, text]);  
-      divRef.current.innerHTML += `<br>${text}`;           
+      setListItems([...listItems, text]);
+      // divRef.current.innerHTML += `<br>${text}`;           
       setText('');   
     }
   }
-
-  function createLi(arr: []) {    
-    return (
-    arr.map((el, index) => (      
-    <li id={String (index)} key={index}>{el}{deleteLi(index)}</li>))
-    )
-  }
-
-  function deleteLi(idText: any){
-    return(
-      <>
-      <div className='deleteLi' onClick={() => document.getElementById(`${idText}`).remove()}>X</div>
-      {/* <div className='deleteLi' onClick={() => divRef.current.remove()}>X</div> */}
-      </>
-    )
+ 
+  function deleteTask(index: number) {
+    setListItems((prev) => (
+      prev.filter((el, i) => index !== i)
+    ));
   }
   
   return (    
@@ -42,9 +32,14 @@ function App() {
       >Отправить</button>
       
       <ol >              
-        {createLi(listItems)}
+        {listItems.map((el, index) => (      
+          <li key={index}>
+            {el}           
+            <span className='deleteLi' onClick={() => deleteTask(index)}>X</span>
+          </li>
+        ))}
       </ol>
-      <div ref = {divRef} />
+      {/* <div ref = {divRef} /> */}
     </>
   );
 }
