@@ -1,8 +1,13 @@
 #root {
-  max-width: 1280px;
+  width: 1440px;
+  height: 1448px;
+  gap: 0px;
+  opacity: 0px;
+
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: #F7EDE8;
 }
 li{
   text-align: initial;
@@ -11,6 +16,24 @@ li{
 }
 span{
   margin: 0 20px 0 0;
+}
+#logo{
+    width: 74px;
+    height: 74px;
+    top: 24px;
+    left: 140px;
+    gap: 0px;
+    opacity: 0px;
+    border-radius: 50%;
+    border: 2px solid;
+    position: relative;
+}
+#logoText{
+  position: absolute;
+  z-index: 1;
+  background: #F7EDE8;
+  margin: 18% 0 0 25%;
+  padding: 10px;
 }
 .deleteLi{
   float: right;

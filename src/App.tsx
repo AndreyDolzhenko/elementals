@@ -6,6 +6,28 @@ function App() {
   const [text, setText] = useState('');  
   const [listItems, setListItems] = useState<string[]>([]);
   const divRef = useRef(null);
+
+  function Logo() {
+    return (
+      <div id='logo'>
+        <div id='logoText'>LEMENTALS</div>
+      </div>
+    );
+  }
+
+  function Header() {
+
+    return (
+      <>
+      {Logo()} 
+        <div>
+          <span>Episodes</span>
+          <span>About</span>
+          <span>More</span>
+        </div>
+      </>
+    );
+  }
   
   function completionOfInput(content: any) {   
     if (content.key == 'Enter' || content.target.value == 'button') {           
@@ -23,6 +45,7 @@ function App() {
   
   return (    
     <>     
+      <div>{Header()}</div>
       <input type="text" value={text}
       onKeyUp={(e: any) => (completionOfInput(e))}
       onChange={(e: any) => (setText(e.target.value))}
