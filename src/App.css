@@ -1,9 +1,7 @@
 #root {
+  position: relative;
   width: 1440px;
-  height: 1448px;
-  gap: 0px;
-  opacity: 0px;
-
+  height: 1448px;  
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -17,16 +15,43 @@ li{
 span{
   margin: 0 20px 0 0;
 }
+#header{
+  position: absolute;
+  width: 1160px;
+  height: 74px;
+  top: 24px;
+  left: 140px; 
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+    font-family: Montserrat Alternates;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25.6px;
+    text-align: left;
+}
 #logo{
     width: 74px;
     height: 74px;
-    top: 24px;
-    left: 140px;
-    gap: 0px;
-    opacity: 0px;
     border-radius: 50%;
     border: 2px solid;
     position: relative;
+}
+#headerMenu{
+  width: 315px;
+  display: flex;
+  justify-content: space-between;
+}
+#headerButton{
+  width: 344px;
+  height: 41px;
+  top: 40px;
+  left: 956px;
+  gap: 20px;
+  opacity: 0px;
+  position: sticky;
+  display: flex;
+  justify-content: flex-end;
 }
 #logoText{
   position: absolute;
