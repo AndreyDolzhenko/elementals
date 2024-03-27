@@ -1,11 +1,38 @@
-#root {
-  position: relative;
+#root {  
   width: 1440px;
-  height: 1448px;  
+  height: 1448px; 
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center; 
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   background: #F7EDE8;
+  font-family: Montserrat Alternates;
+  font-size: 16px;  
+}
+
+button {
+  width: Hug (188px)px;
+  height: Hug (41px)px;
+  padding: 12px 24px 12px 24px;
+  gap: 0px;
+  border-radius: 8px;
+  border: 2px 0px 0px 0px;
+  opacity: 0px;
+  cursor: pointer;
+  font-family: Montserrat Alternates;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.07px;
+  text-align: left;    
+  border: 2px solid #000000;
+  background: #F7EDE8;
+}
+
+button:hover {
+  background: #000000;
+  color: #F7EDE8;
 }
 li{
   text-align: initial;
@@ -15,8 +42,7 @@ li{
 span{
   margin: 0 20px 0 0;
 }
-#header{
-  position: absolute;
+#header{  
   width: 1160px;
   height: 74px;
   top: 24px;
@@ -24,18 +50,14 @@ span{
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-    font-family: Montserrat Alternates;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 25.6px;
-    text-align: left;
+  font-weight: 700;
 }
 #logo{
     width: 74px;
     height: 74px;
     border-radius: 50%;
-    border: 2px solid;
-    position: relative;
+    border: 2px solid; 
+    position: relative;   
 }
 #headerMenu{
   width: 315px;
@@ -45,11 +67,7 @@ span{
 #headerButton{
   width: 344px;
   height: 41px;
-  top: 40px;
-  left: 956px;
   gap: 20px;
-  opacity: 0px;
-  position: sticky;
   display: flex;
   justify-content: flex-end;
 }
@@ -59,24 +77,4 @@ span{
   background: #F7EDE8;
   margin: 18% 0 0 25%;
   padding: 10px;
-}
-.deleteLi{
-  float: right;
-    background: burlywood;
-    color: antiquewhite;
-    border-radius: 50%;
-    width: 20px;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-}
-.deleteLi:hover{
-  float: right;
-    background: antiquewhite;
-    color: burlywood;
-    border-radius: 50%;
-    width: 20px;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
 }
