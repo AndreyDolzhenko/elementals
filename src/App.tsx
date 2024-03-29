@@ -15,11 +15,13 @@ function App() {
   const avaGirl = <img src={PersonGirl} alt="My SVG" />;
   const avaBoy = <img src={PersonBoy} alt="My SVG" />;
   const [person, setPerson] = useState(avaBoy);
-  const [auto, setAuto] = useState("");
+  const [auto, setAuto] = useState(true);
 
 function authorization() {
   return (
-    <div className="authorizationBaze">
+    <div className="authorizationBaze" 
+      // onClickCapture={(e) => (e.preventDefault(), setAuto(false), console.log(e.target))}
+      >
       <div className="authorizationForm">        
       <div style={
       {
@@ -30,7 +32,10 @@ function authorization() {
         margin: "-50px -30px 0 0"
       }
     }
-    onClick={() => setAuto("")}
+    onClick={(e) => (e.preventDefault(),
+      setAuto(false), 
+      console.log(e.target)
+      )}
     >X</div>
     <div style={
       {
