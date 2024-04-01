@@ -15,13 +15,6 @@
   cursor: "pointer";
 }
 
-svg {
-  position: absolute;
-  width: 0; 
-  height: 0; 
-  overflow: hidden;
-}
-
 button {
   width: Hug (188px)px;
   height: Hug (41px)px;
@@ -111,6 +104,11 @@ header{
     border: 2px solid burlywood;
     color: burlywood;
     background: aliceblue;
+}
+
+.social_networks{
+  width: 25px;
+  fill: blue;
 }
 
 #logo{

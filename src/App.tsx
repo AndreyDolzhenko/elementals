@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { ReactSVG } from "react-svg";
-import { useRef } from "react";
 // import authorization from "./authorization";
-import PersonGirl from "./svg/girl1.svg";
-import PersonBoy from "./svg/boy1.svg";
+import PersonGirl from "./svg/girl1.svg?react";
+import PersonBoy from "./svg/boy1.svg?react";
 import "./App.css";
 
-import VK from "./svg/vk_1.svg";
-import Facebook from "./svg/facebook_1.svg";
-import Odnoklassniki from "./svg/odnoklassniki_1.svg";
-import Google from "./svg/google.svg";
+import VK from "./svg/vk_1.svg?react";
+import Facebook from "./svg/facebook_1.svg?react";
+import Odnoklassniki from "./svg/odnoklassniki_1.svg?react";
+import Google from "./svg/google.svg?react";
 
 function App() {  
   
@@ -17,7 +15,7 @@ function App() {
   const avaBoy = <img src={PersonBoy} alt="My SVG" />;
   const [person, setPerson] = useState(avaBoy);
   const [auto, setAuto] = useState(true);
-  const [login, setLogin] = useState();
+  const [login, setLogin] = useState("");
 
   function header() {
     return (      
@@ -61,12 +59,7 @@ function App() {
   function authorization() {
   
     return (
-      <div className="authorizationBaze"
-      // onClick={(e) => (e.preventDefault(),
-      //   setAuto(false), 
-      //   console.log(e.target)
-      //   )}
-      >
+      <div className="authorizationBaze">
         <div className="authorizationForm">        
         <div style={
         {
@@ -90,11 +83,8 @@ function App() {
         }
       }>
       <div>Авторизация</div>
-      <div style={{textAlign: "end"}}>
-        <img style={{width: "7%", cursor: "pointer"}} src={VK} alt="My SVG" />
-        <img style={{width: "7%", cursor: "pointer"}} src={Facebook} alt="My SVG" />
-        <img style={{width: "7%", cursor: "pointer"}} src={Odnoklassniki} alt="My SVG" />
-        <img style={{width: "7%", cursor: "pointer"}} src={Google} alt="My SVG" />
+      <div className="social_networks">
+        <VK />
         
       </div>
       </div>
@@ -104,9 +94,9 @@ function App() {
                   flexDirection: "column"
       }}      
       >
-      <input className="autoInput" type="text" placeholder="Логин" value={login} onChange={(e: any) => setLogin(e.target.value)} />
+      <input className="autoInput" type="text" placeholder="Логин" onChange={(e: any) => console.log(e.target.value)} />
       <input className="autoInput" type="text" placeholder="Пароль" 
-      onClick={() => (console.log(login))}
+      onClick={() => console.log(login)}
       />
       <button className="autoInput" id="authorizationButton">Войти</button>
       </form>
