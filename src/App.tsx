@@ -1,35 +1,39 @@
-import { useState } from "react";
-import "./App.css";
+import React, { useState } from "react";
 
-import BaseContent from "./components/BaseContent.tsx";
-
+import BaseContent from "./components/BaseBackground";
 import VK from "./svg/vk_1.svg?react";
 import Facebook from "./svg/facebook_1.svg?react";
 import Odnoklassniki from "./svg/odnoklassniki_1.svg?react";
 import Google from "./svg/google.svg?react";
+import "./App.css";
 
-function Header(props: any) {
+type Props = {
+  isModalOpen: boolean;
+  modalOpen: () => void;
+};
+
+const Header: React.FC<Props> = ({isModalOpen, modalOpen}) => {
   return (
     <header>
       <div className="left_menu">
-        <div style={{ width: 250, float: "left" }}>
+        <div className="left_menu_name">
           <div id="logo" title="Go to Elementals Home">
             <div id="logoText">LEMENTALS</div>
           </div>
         </div>
-        <div id="headerMenu">
-          <span className="menu">Episodes</span>
-          <span className="menu">About</span>
-          <span className="menu">More</span>
+        <div className="headerMenu">
+          <span>Episodes</span>
+          <span>About</span>
+          <span>More</span>
         </div>
       </div>
-      <div id="headerButton">
+      <div className="headerButtons">
         <button>SUBSCRIBE</button>
         <button
           title="Log in to Elementals"
-          onClick={() => props}
+          onClick={modalOpen}
         >
-          Log In
+          LOG IN
         </button>
       </div>
     </header>
@@ -75,14 +79,13 @@ function Authorization() {
 }
 
 function App() {
-  const [auto, setAuto] = useState();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <>{Header(setAuto)}</>
-      <Header title = {<Authorization />} />
-      <BaseContent />
-      <>{auto}</>
+      <Header isModalOpen={isModalOpen} modalOpen={() => setModalOpen(true)} />     
+      <BaseContent /> 
+      {isModalOpen ? <Authorization /> : ""}     
     </>
   );
 }

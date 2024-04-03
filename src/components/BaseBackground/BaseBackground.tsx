@@ -1,14 +1,16 @@
-export default function BaseContent() {
+import classes from "./BaseBackground.module.scss";
+
+function BaseContent() {
   return (
     <>
-      <div className="main_text">
+      <div className={classes.main_text}>
         Your Daily<div>Contact</div>
       </div>
-      <div className="main_text">
+      <div className={classes.main_text}>
         with those who are interested in you <br></br>and a weekly special guest
       </div>
       <svg
-        className="decorateElements"
+        className={classes.decorateElements}
         width="326"
         height="593"
         viewBox="0 0 326 593"
@@ -27,7 +29,7 @@ export default function BaseContent() {
         />
       </svg>
       <svg
-        className="decorateElements"
+        className={classes.decorateElements}
         width="156"
         height="217"
         viewBox="0 0 156 217"
@@ -54,3 +56,5 @@ export default function BaseContent() {
     </>
   );
 }
+
+export default BaseContent;

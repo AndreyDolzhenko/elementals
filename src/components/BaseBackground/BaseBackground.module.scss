@@ -1,0 +1,36 @@
+.main_text{
+    width: 513px;  
+    margin-top: 88px;  
+    font-family: Montserrat Alternates;
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 96px;
+    letter-spacing: -0.04em;
+    text-align: center;    
+    }
+    .main_text > div{
+      color: #CD4631;
+    }
+    .main_text:nth-child(3){
+    font-family: Montserrat Alternates;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25.6px;
+    text-align: center;
+    margin: 44px;
+    }
+  
+  .decorateElements{
+    position: absolute;  
+  }
+  
+  .decorateElements:nth-child(even){
+    align-self: flex-start;
+    margin: 0 0 0 -30px;
+  }
+  
+  .decorateElements:nth-child(odd){
+    align-self: flex-end;
+    margin: 235px 25px 0 0;
+  }
+  
