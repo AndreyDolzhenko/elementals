@@ -27,6 +27,7 @@ body {
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  background: #F7EDE8;
 }
 
 h1 {
@@ -54,5 +55,5 @@ button:focus-visible {
 }
 @font-face {
   font-family: "Montserrat Alternates";
-  src: url("fonts/MontserratAlternates-Bold.ttf");
+  src: url("./assets/fonts/MontserratAlternates-Bold.ttf");
 }

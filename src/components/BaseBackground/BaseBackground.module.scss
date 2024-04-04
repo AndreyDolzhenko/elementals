@@ -20,17 +20,14 @@
     margin: 44px;
     }
   
-  .decorateElements{
-    position: absolute;  
+  .decorate_left{
+    position: fixed;
+    left: -30px; 
   }
   
-  .decorateElements:nth-child(even){
-    align-self: flex-start;
-    margin: 0 0 0 -30px;
+  .decorate_right{
+    position: fixed;
+    top: 235px;
+    right: 25px;
   }
-  
-  .decorateElements:nth-child(odd){
-    align-self: flex-end;
-    margin: 235px 25px 0 0;
-  }
-  
+    

@@ -10,7 +10,7 @@ function BaseContent() {
         with those who are interested in you <br></br>and a weekly special guest
       </div>
       <svg
-        className={classes.decorateElements}
+        className={classes.decorate_left}
         width="326"
         height="593"
         viewBox="0 0 326 593"
@@ -29,7 +29,7 @@ function BaseContent() {
         />
       </svg>
       <svg
-        className={classes.decorateElements}
+        className={classes.decorate_right}
         width="156"
         height="217"
         viewBox="0 0 156 217"
@@ -52,6 +52,7 @@ function BaseContent() {
           stroke-width="6"
         />
       </svg>
+
       <button>SUBSCRIBE</button>
     </>
   );

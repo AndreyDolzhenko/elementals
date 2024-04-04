@@ -1,0 +1,60 @@
+header {  
+    width: 1160px;
+    height: 74px;
+    top: 24px;
+    left: 140px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+  }
+  
+  #logo {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    border: 2px solid; 
+    position: relative; 
+    cursor: pointer;  
+  }
+  
+  #logoText {
+    position: absolute;
+    z-index: 1;
+    color: green;
+    letter-spacing: .1rem;
+    background: #F7EDE8;
+    margin: 18% 0 0 25%;
+    padding: 10px;
+    }
+  
+  .left_menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .headerMenu {
+    width: 315px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left_menu_block{
+    display: flex;
+    justify-content: space-around;
+    width: 350px;
+    margin-left: 150px;
+  }
+    
+  .left_menu_name:hover{
+    cursor: pointer;
+    color: #808080;
+  }
+  
+  .headerButtons {
+    width: 344px;
+    height: 41px;
+    gap: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
