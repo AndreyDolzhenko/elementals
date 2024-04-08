@@ -1,11 +1,13 @@
 import classes from "./Header.module.scss";
 
-type Props = {
-  isModalOpen: boolean;
+
+
+type Props = {  
+  elements?: Record<string, number>[];
   modalOpen: () => void;
 };
 
-const Header: React.FC<Props> = ({ isModalOpen, modalOpen }) => {
+const Header: React.FC<Props> = ({ elements, modalOpen }) => {
   return (
     <header>
       <div className={classes.left_menu}>
@@ -22,7 +24,7 @@ const Header: React.FC<Props> = ({ isModalOpen, modalOpen }) => {
       </div>
       <div className={classes.headerButtons}>
         <button>SUBSCRIBE</button>
-        <button title="Log in to Elementals" onClick={modalOpen}>
+        <button title="Log in to Elementals" onClick={() => console.log(elements)}>
           LOG IN
         </button>
       </div>

@@ -9,12 +9,11 @@ import Google from "../../assets/icons/google.svg?react";
 // const buttonClasses = classes.autoInput + classes.come_in;
 {/* <div className={classNames(classes.SectionOne, classes.SectionTwo)}></div> */}
 
-type Props = {
-  isModalOpen: boolean;
+type Props = {  
   modalClose: () => void;
 };
 
-const Authorization: React.FC<Props> = ({ isModalOpen, modalClose }) => {
+const Authorization: React.FC<Props> = ({ modalClose }) => {
   return (
     <div className={classes.authorizationBaze}>
       <div className={classes.authorizationForm}>

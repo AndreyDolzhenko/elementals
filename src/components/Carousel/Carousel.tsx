@@ -23,6 +23,6 @@ const items = [
     role="presentation"
   />,
 ];
-const Gallery = () => <AliceCarousel mouseTracking items={items} />;
+const Gallery: React.FC = () => <AliceCarousel mouseTracking items={items} />;
 
 export default Gallery;
