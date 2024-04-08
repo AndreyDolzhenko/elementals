@@ -60,4 +60,8 @@ span {
 .menu:hover{
   color: #808080;
 }
+
+.alice-carousel__stage{
+  display: flex;
+}
  
