@@ -1,5 +1,11 @@
 import classes from "./BaseBackground.module.scss";
 
+import Decorates from "../DecorativeElements";
+import Gallery from "../Carousel";
+import Spotify from "../../assets/icons/spotify.svg?react";
+import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
+import Youtube from "../../assets/icons/youtube.svg?react";
+
 function BaseContent() {
   return (
     <>
@@ -9,7 +15,15 @@ function BaseContent() {
       <div className={classes.main_text}>
         with those who are interested in you <br></br>and a weekly special guest
       </div>
-      <button>SUBSCRIBE</button>      
+      <button>SUBSCRIBE</button>
+      <Gallery />
+      <div className="media">
+        <span>Supported by:</span>
+        <Spotify />
+        <GooglePodcast />
+        <Youtube />
+      </div>
+      <Decorates />
     </>
   );
 }

@@ -1,15 +1,15 @@
-#root {  
+#root {
   width: 1440px;
-  height: 1448px; 
-  display: flex;  
+  height: 1448px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background: #F7EDE8;
+  background: #f7ede8;
   font-family: Montserrat Alternates;
-  font-size: 16px;  
+  font-size: 16px;
 }
 
 .img {
@@ -17,8 +17,8 @@
 }
 
 button {
-  width: Hug (188px)px;
-  height: Hug (41px)px;
+  width: Hug (188px) px;
+  height: Hug (41px) px;
   padding: 12px 24px 12px 24px;
   gap: 0px;
   border-radius: 8px;
@@ -29,15 +29,15 @@ button {
   font-size: 14px;
   font-weight: 700;
   line-height: 17.07px;
-  letter-spacing: .1rem;
-  text-align: left;    
+  letter-spacing: 0.1rem;
+  text-align: left;
   border: 2px solid #000000;
-  background: #F7EDE8;
+  background: #f7ede8;
 }
 
 button:hover {
   background: #000000;
-  color: #F7EDE8;
+  color: #f7ede8;
 }
 
 li {
@@ -53,15 +53,29 @@ span {
   margin: 0 20px 0 0;
 }
 
-.menu{
+.menu {
   cursor: pointer;
 }
 
-.menu:hover{
+.menu:hover {
   color: #808080;
 }
 
-.alice-carousel__stage{
+.alice-carousel__stage {
   display: flex;
 }
- 
+
+.media {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 1160px;
+  height: 90px;
+  border-top: 1.5px solid;
+  border-bottom: 1.5px solid;
+  margin-bottom: 150px;
+}
+
+.media > span{
+  margin: 70px 0 70px 0;
+}
