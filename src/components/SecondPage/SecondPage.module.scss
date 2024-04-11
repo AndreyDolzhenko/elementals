@@ -1,4 +1,5 @@
 .secondPage {
+  display: contents;
   width: 1440px;
   height: 1375px;
   background-color: white;
@@ -15,4 +16,32 @@
   line-height: 71.16px;
   letter-spacing: -0.02em;
   text-align: center;
+}
+
+.pictograms {
+  width: 1160px;
+  display: flex;
+  justify-content: space-between;
+  margin: 75px 0 75px 0;
+}
+.pictograms div {
+  width: 472px;
+  height: 367px;
+  margin: 50px 0 0 0;
+}
+
+.block_description {
+  width: 1160px;  
+  background: #f7ede8;
+}
+.block_description_text{ 
+font-family: Montserrat Alternates;
+font-size: 36.65px;
+font-weight: 700;
+line-height: 51.31px;
+letter-spacing: -0.02em;
+text-align: center;
+}
+.speaker_name{
+  margin: 50px;
 }

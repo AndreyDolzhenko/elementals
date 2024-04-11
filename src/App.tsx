@@ -15,12 +15,8 @@ function App() {
   return (
     <>
       <Header elements={names} modalOpen={() => setModalOpen(true)} />
-      <BaseContent />
-
+      <BaseContent />      
       <SecondPage />
-      
-
-      
       {isModalOpen ? (
         <Authorization modalClose={() => setModalOpen(false)} />
       ) : (

@@ -5,10 +5,11 @@ import Gallery from "../Carousel";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
+import DecoreBottom from "../../assets/icons/decoreBottom.svg?react";
 
 function BaseContent() {
   return (
-    <>
+    <>    
       <div className={classes.main_text}>
         Your Daily<div>Contact</div>
       </div>
@@ -24,6 +25,7 @@ function BaseContent() {
         <Youtube />
       </div>
       <Decorates />
+      <DecoreBottom />
     </>
   );
 }
