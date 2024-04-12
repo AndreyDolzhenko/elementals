@@ -9,7 +9,7 @@ import DecoreBottom from "../../assets/icons/decoreBottom.svg?react";
 
 function BaseContent() {
   return (
-    <>    
+    <>
       <div className={classes.main_text}>
         Your Daily<div>Contact</div>
       </div>
@@ -25,7 +25,9 @@ function BaseContent() {
         <Youtube />
       </div>
       <Decorates />
-      <DecoreBottom />
+      <div style={{ position: "absolute", top: "2823px" }}>
+        <DecoreBottom />
+      </div>
     </>
   );
 }

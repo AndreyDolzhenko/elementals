@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import BaseContent from "./components/BaseBackground";
 import Header from "./components/Header";
 import Authorization from "./components/Authorization";
-
-
 import SecondPage from "./components/SecondPage";
+import ThirdyPage from "./components/ThirdyPage";
 import "./App.css";
 
 function App() {
@@ -17,6 +16,7 @@ function App() {
       <Header elements={names} modalOpen={() => setModalOpen(true)} />
       <BaseContent />      
       <SecondPage />
+      <ThirdyPage />
       {isModalOpen ? (
         <Authorization modalClose={() => setModalOpen(false)} />
       ) : (

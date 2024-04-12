@@ -1,0 +1,27 @@
+.thirdy_page {
+  width: 1440px;
+  height: 935px;
+  background: #edf3f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 150px 0 0 0;
+}
+
+.block_description {
+  width: 689px;
+  font-size: 59.3px;
+  font-weight: 700;
+  line-height: 71.16px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 127px 0 0 0;
+}
+.block_description > div {
+  font-family: Montserrat Alternates;
+  font-size: 22.65px;
+  font-weight: 500;
+  line-height: 36.24px;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
