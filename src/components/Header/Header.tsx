@@ -2,12 +2,11 @@ import classes from "./Header.module.scss";
 
 
 
-type Props = {  
-  elements?: Record<string, number>[];
+type Props = {    
   modalOpen: () => void;
 };
 
-const Header: React.FC<Props> = ({ elements, modalOpen }) => {
+const Header: React.FC<Props> = ({ modalOpen }) => {
   return (
     <header>
       <div className={classes.left_menu}>
@@ -24,7 +23,7 @@ const Header: React.FC<Props> = ({ elements, modalOpen }) => {
       </div>
       <div className={classes.headerButtons}>
         <button>SUBSCRIBE</button>
-        <button title="Log in to Elementals" onClick={() => console.log(elements)}>
+        <button title="Log in to Elementals" onClick={modalOpen}>
           LOG IN
         </button>
       </div>
