@@ -6,6 +6,7 @@ import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
 import DecoreBottom from "../../assets/icons/decoreBottom.svg?react";
+import Time from "../Time";
 
 function BaseContent() {
   return (
@@ -17,6 +18,7 @@ function BaseContent() {
         with those who are interested in you <br></br>and a weekly special guest
       </div>
       <button>SUBSCRIBE</button>
+      <Time />
       <Gallery />
       <div className="media">
         <span>Supported by:</span>
