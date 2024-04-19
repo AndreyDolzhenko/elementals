@@ -11,14 +11,17 @@ const Header: React.FC<Props> = ({ modalOpen }) => {
     <header>
       <div className={classes.left_menu}>
         <div className={classes.left_menu}>
-          <div id={classes.logo} title="Go to Elementals Home">
-            <div id={classes.logoText}>LEMENTALS</div>
+          <div id={classes.logo} title="to Home">
+            <div className={classes.logoText}>БУЧАЛКА
+            <div className={classes.logoText}>УМЦ</div>
+            </div>
+            
           </div>
         </div>
         <ul className={classes.left_menu_block}>
-          <li className={classes.left_menu_name}>Episodes</li>
-          <li className={classes.left_menu_name}>About</li>
-          <li className={classes.left_menu_name}>More</li>
+          <li className={classes.left_menu_name}>Программы</li>
+          <li className={classes.left_menu_name}>Инструкции</li>
+          <li className={classes.left_menu_name}>Рейтинги</li>
         </ul>
       </div>
       <div className={classes.headerButtons}>

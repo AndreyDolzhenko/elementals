@@ -12,7 +12,7 @@ function BaseContent() {
   return (
     <>
       <div className={classes.main_text}>
-        Your Daily<div>Contact</div>
+        Твой фактор<div>Роста</div>
       </div>
       <div className={classes.main_text}>
         with those who are interested in you <br></br>and a weekly special guest
