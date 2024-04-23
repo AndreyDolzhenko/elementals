@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import classes from "./Time.module.scss";
 
-function Clock() {
+type Props = {
+  firstArgument : "",
+}
+
+function Clock( { firstArgument } ) {
   // Initialize the current time to the current date and time
   const [time, setTime] = useState(new Date());
+  
 
   // Update the time every second
   useEffect(() => {
@@ -16,27 +21,26 @@ function Clock() {
   }, []);
 
   // Extract the hours, minutes, and seconds from the current time
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
-  const seconds = time.getSeconds();
-  const day = time.getDate();
-  const month = time.getMonth();
-  const year = time.getFullYear();
+  const returnDate = time.toLocaleDateString();
+  const returnTime = time.toLocaleTimeString();
 
-  // Format the time as a string
-  const timeString = `${hours}:${minutes}:${seconds}`;
-  const dateString = `${day}:${month+1}:${year}`;
+  const [timeMoment, setTimeMoment] = useState("");
+
+  
 
   return (
     <div>
-      {/* Display the time string */}
-      <div style={{
-        display: "flex",
-        width: "250px",
-        justifyContent: "space-around",
-        }}>
-      <h3 className={classes.h3}>{timeString}</h3>
-      <h3>{dateString}</h3>
+      <div
+        style={{
+          display: "flex",
+          width: "200px",
+          justifyContent: "space-around",
+          marginTop: "25px",
+        }}
+      >
+        <h3 className={classes.h3} onClick={(event)=>{setTimeMoment(event.target.innerText), firstArgument = event.target.innerText}}>{returnTime}</h3>
+        <h3 >{returnDate}</h3>
+        <div>{timeMoment}</div>        
       </div>
     </div>
   );

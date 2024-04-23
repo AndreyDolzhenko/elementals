@@ -8,17 +8,20 @@ import Youtube from "../../assets/icons/youtube.svg?react";
 import DecoreBottom from "../../assets/icons/decoreBottom.svg?react";
 import Time from "../Time";
 
-function BaseContent() {
+function BaseContent() { 
+const text = Time;
   return (
     <>
       <div className={classes.main_text}>
         Твой фактор<div>Роста</div>
       </div>
       <div className={classes.main_text}>
-        with those who are interested in you <br></br>and a weekly special guest
+        с программами корпоративного университета <br></br>
+        <span style={{letterSpacing: "3px", color: "#CD4631"}}>ОФИСМАГ</span>
       </div>
-      <button>SUBSCRIBE</button>
-      <Time />
+      <button>ПРОГРАММЫ</button>
+      <Time firstArgument={console.log("Hi")} />
+      {console.log(text)}
       <Gallery />
       <div className="media">
         <span>Supported by:</span>

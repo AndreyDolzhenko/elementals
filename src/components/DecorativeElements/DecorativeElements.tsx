@@ -45,7 +45,7 @@ function DecorativeElements() {
         stroke="black"
         strokeWidth="6"
       />
-    </svg>
+    </svg>    
     </>
   );
 }
