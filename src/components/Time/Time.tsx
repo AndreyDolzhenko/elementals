@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import classes from "./Time.module.scss";
 
 type Props = {
-  firstArgument : "",
-}
+  getTime: (event: React.MouseEvent<HTMLHeadingElement>) => void;
+};
 
-function Clock( { firstArgument } ) {
+const Time: React.FC<Props> = ({ getTime }) => {
   // Initialize the current time to the current date and time
   const [time, setTime] = useState(new Date());
-  
 
   // Update the time every second
   useEffect(() => {
@@ -24,10 +23,6 @@ function Clock( { firstArgument } ) {
   const returnDate = time.toLocaleDateString();
   const returnTime = time.toLocaleTimeString();
 
-  const [timeMoment, setTimeMoment] = useState("");
-
-  
-
   return (
     <div>
       <div
@@ -38,12 +33,14 @@ function Clock( { firstArgument } ) {
           marginTop: "25px",
         }}
       >
-        <h3 className={classes.h3} onClick={(event)=>{setTimeMoment(event.target.innerText), firstArgument = event.target.innerText}}>{returnTime}</h3>
-        <h3 >{returnDate}</h3>
-        <div>{timeMoment}</div>        
+        <h3 className={classes.h3} onClick={(event) => getTime(event)}>
+          {returnTime}
+        </h3>
+        <h3>{returnDate}</h3>
+        {/* <div>{timeMoment}</div>         */}
       </div>
     </div>
   );
-}
+};
 
-export default Clock;
+export default Time;
