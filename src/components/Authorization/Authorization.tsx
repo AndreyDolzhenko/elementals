@@ -9,20 +9,18 @@ import { useState } from "react";
 
 type Props = {
   modalClose: () => void;  
-  getContentForm: (password: {login: "1", password: "2"}) => void;
+  setLogin: React.Dispatch<React.SetStateAction<string>>;  
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  forgotPassword: () => void;
 };
 
-const Authorization: React.FC<Props> = ({ modalClose, getContentForm }) => {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-
-  const contentForm = (login: "", password: "") => {
-    return {
-      login: login,
-      password: password,
-    };
-  };
-
+const Authorization: React.FC<Props> = ({ 
+  modalClose,  
+  setLogin,
+  setPassword,
+  forgotPassword
+ }) => {
+  
   return (
     <div className={classes.authorizationBaze}>
       <div className={classes.authorizationForm}>
@@ -61,18 +59,27 @@ const Authorization: React.FC<Props> = ({ modalClose, getContentForm }) => {
             placeholder="Пароль"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className={classNames(classes.autoInput, classes.come_in)} onClick={() => console.log("This" + getContentForm(password))}>
+          <button
+            className={classNames(classes.autoInput, classes.come_in)}
+            // onClick={() => console.log(
+            //   `login: ${login}
+            //    password: ${password}`)}
+          >
             Войти
           </button>
         </form>
         <div className={classes.autoBottom}>
           <span
             className="menu"
-            onClick={() => console.log(contentForm(login, password))}
           >
             Регистрация
           </span>
-          <span className="menu" onClick={() => console.log("This!!!!" + getContentForm(contentForm))}>Забыли пароль?</span>
+          <span
+            className="menu"
+            onClick={forgotPassword}
+          >
+            Забыли пароль?
+          </span>
         </div>
       </div>
     </div>

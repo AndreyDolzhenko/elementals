@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import Header from "../Header";
 import Decorates from "../DecorativeElements";
 import Gallery from "../Carousel";
 import Spotify from "../../assets/icons/spotify.svg?react";
@@ -7,9 +8,13 @@ import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
 import DecoreBottom from "../../assets/icons/decoreBottom.svg?react";
 import Time from "../Time";
-import classes from "./BaseBackground.module.scss";
+import classes from "./Main.module.scss";
 
-function BaseContent() {
+type Props = {
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Main: React.FC<Props> = ({ setModalOpen }) => {
   const [timeMoment, setTimeMoment] = useState("");
 
   const getTime = (event: React.MouseEvent<HTMLHeadingElement>) => {
@@ -18,6 +23,7 @@ function BaseContent() {
 
   return (
     <>
+      <Header modalOpen={() => setModalOpen(true)} />
       <div className={classes.main_text}>
         Твой фактор<div>Роста</div>
       </div>
@@ -27,7 +33,7 @@ function BaseContent() {
       </div>
       <button>ПРОГРАММЫ</button>
       <Time getTime={getTime} />
-      {console.log(timeMoment)}
+      {/* {console.log(timeMoment)} */}
       <Gallery />
       <div className="media">
         <span>Supported by:</span>
@@ -43,4 +49,4 @@ function BaseContent() {
   );
 }
 
-export default BaseContent;
+export default Main;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import BaseContent from "./components/BaseBackground";
-import Header from "./components/Header";
+import Main from "./components/Main";
 import Authorization from "./components/Authorization";
 import SecondPage from "./components/SecondPage";
 import ThirdyPage from "./components/ThirdyPage";
@@ -13,21 +12,27 @@ import "./App.css";
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [content, setContent] = useState({login: "", password: ""});
+  const [login, setLogin] = useState("1");
+  const [password, setPassword] = useState("2");
 
-  const getContentForm = (password: {}) => {
-    setContent(password);
+  const forgotPassword = () => {
+    console.log(
+      `login: ${login}
+       password: ${password}`)
   }
   
   return (
-    <>                
-      {console.log(content)}
-      <Header modalOpen={() => setModalOpen(true)} />
-      <BaseContent />      
+    <>         
+      <Main setModalOpen={setModalOpen} />      
       <SecondPage />
       <ThirdyPage />
       {isModalOpen ? (
-        <Authorization modalClose={() => setModalOpen(false)} getContentForm={getContentForm({login: "3", password: "4"})}/>
+        <Authorization 
+          modalClose={() => setModalOpen(false)}           
+          setLogin={setLogin}          
+          setPassword={setPassword}
+          forgotPassword={forgotPassword}
+        />
       ) : (
         ""
       )}
