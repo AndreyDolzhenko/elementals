@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import Main from "./components/Main";
 import Authorization from "./components/Authorization";
-import SecondPage from "./components/SecondPage";
-import ThirdyPage from "./components/ThirdyPage";
 import "./App.css";
 
 // const URL = "http://89.111.172.208:5000/api/v1";
@@ -23,9 +21,7 @@ function App() {
   
   return (
     <>         
-      <Main setModalOpen={setModalOpen} />      
-      <SecondPage />
-      <ThirdyPage />
+      <Main setModalOpen={setModalOpen} />       
       {isModalOpen ? (
         <Authorization 
           modalClose={() => setModalOpen(false)}           

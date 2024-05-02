@@ -1,22 +1,128 @@
-.main_text{
-    width: 700px;  
-    margin-top: 88px;  
-    font-family: Montserrat Alternates;
-    font-size: 96px;
-    font-weight: 700;
-    line-height: 96px;
-    letter-spacing: -0.04em;
-    text-align: center;    
-    }
-    .main_text > div{
-      color: #CD4631;
-    }
-    .main_text:nth-child(3){
-    font-family: Montserrat Alternates;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 25.6px;
-    text-align: center;
-    margin: 44px;
-    }
-    
+.first_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: Montserrat Alternates;
+  font-size: 16px;
+  background: #f7ede8;
+}
+.main_text {
+  width: 700px;
+  margin-top: 88px;
+  font-family: Montserrat Alternates;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 96px;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+.main_text > div {
+  color: #cd4631;
+}
+.main_text:nth-child(3) {
+  font-family: Montserrat Alternates;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25.6px;
+  text-align: center;
+  margin: 44px;
+}
+.media {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 1160px;
+  height: 90px;
+  border-top: 1.5px solid;
+  border-bottom: 1.5px solid;
+  margin-bottom: 50px;
+}
+.secondPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: Montserrat Alternates;
+  font-size: 16px;
+}
+
+.secondPageTitle {
+  width: 735px;
+  height: 142px;
+  top: 140px;
+  left: 353px;
+  font-family: Montserrat Alternates;
+  font-size: 59.3px;
+  font-weight: 700;
+  line-height: 71.16px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.pictograms {
+  width: 1160px;
+  display: flex;
+  justify-content: space-between;
+  margin: 75px 0 75px 0;
+}
+.pictograms div {
+  width: 472px;
+  margin: 50px 0 0 0;
+}
+
+.block_description_two {
+  width: 1160px;
+  background: #f7ede8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.block_description_text {
+  width: 800px;
+  font-family: Montserrat Alternates;
+  font-size: 36.65px;
+  font-weight: 700;
+  line-height: 51.31px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+.speaker_name {
+  width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 50px;
+}
+.thirdy_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: Montserrat Alternates;
+  font-size: 16px;
+  background: #EDF3F7;
+}
+
+.block_description_three {
+  width: 1160px;
+  font-size: 59.3px;
+  font-weight: 700;
+  line-height: 71.16px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 127px 0 0 0;
+}
+.block_description_three > div {
+  font-family: Montserrat Alternates;
+  font-size: 22.65px;
+  font-weight: 500;
+  line-height: 36.24px;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
