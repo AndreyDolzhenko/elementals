@@ -1,5 +1,14 @@
+.test {
+  position: relative;
+}
+
+@font-face {
+  font-family: "Montserrat Alternates";
+  src: url("./assets/fonts/MontserratAlternates-Bold.ttf");
+}
+
 body {
-  margin: 0;
+  font-family: "Montserrat Alternates";
 }
 
 .img {

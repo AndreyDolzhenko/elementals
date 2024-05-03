@@ -1,10 +1,11 @@
 import classes from "./Header.module.scss";
 
 type Props = {    
-  modalOpen: () => void;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;  
 };
 
-const Header: React.FC<Props> = ({ modalOpen }) => {
+const Header: React.FC<Props> = ({ setModalOpen }) => {  
+
   return (
     <header>
       <div className={classes.left_menu}>
@@ -24,7 +25,7 @@ const Header: React.FC<Props> = ({ modalOpen }) => {
       </div>
       <div className={classes.headerButtons}>
         <button>Обратная связь</button>
-        <button title="Log in to Elementals" onClick={modalOpen}>
+        <button title="Log in to Elementals" onClick={() => setModalOpen(true)}>
           Войти
         </button>
       </div>

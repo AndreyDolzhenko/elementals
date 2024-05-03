@@ -5,7 +5,6 @@ import VK from "../../assets/icons/vk_1.svg?react";
 import Facebook from "../../assets/icons/facebook_1.svg?react";
 import Odnoklassniki from "../../assets/icons/odnoklassniki_1.svg?react";
 import Google from "../../assets/icons/google.svg?react";
-import { useState } from "react";
 
 type Props = {
   modalClose: () => void;  
