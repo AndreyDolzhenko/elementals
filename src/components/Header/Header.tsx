@@ -1,10 +1,16 @@
+import { useState } from "react";
 import classes from "./Header.module.scss";
 
 type Props = {    
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;  
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  inputTxt: string; 
+  showTxt: (inputTxt: string) => void;
 };
 
-const Header: React.FC<Props> = ({ setModalOpen }) => {  
+const Header: React.FC<Props> = ({ setModalOpen, inputTxt, showTxt }) => {  
+
+  
+  const [newBlock, setNewBlock] = useState(inputTxt);
 
   return (
     <header>
@@ -18,10 +24,12 @@ const Header: React.FC<Props> = ({ setModalOpen }) => {
           </div>
         </div>
         <ul className={classes.left_menu_block}>
-          <li className={classes.left_menu_name}>О портале</li>
+          <li className={classes.left_menu_name} onClick={(e) => showTxt(e.target.textContent)}>О портале</li>
           <li className={classes.left_menu_name}>Инструкции</li>
           <li className={classes.left_menu_name}>Рейтинги</li>
+          <li className={classes.left_menu_name} onClick={() => setNewBlock(inputTxt)}>{newBlock}</li>
         </ul>
+        
       </div>
       <div className={classes.headerButtons}>
         <button>Обратная связь</button>

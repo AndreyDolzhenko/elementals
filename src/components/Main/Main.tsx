@@ -18,6 +18,11 @@ import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
 
 const Main: React.FC = () => {
+  const [inputTxt, setInputTxt] = useState("Click");
+  const showTxt = (inputTxt: string) => {
+    console.log(inputTxt);
+  }
+
   const [timeMoment, setTimeMoment] = useState("");
 
   const getTime = (event: React.MouseEvent<HTMLHeadingElement>) => {
@@ -49,7 +54,11 @@ const Main: React.FC = () => {
       )}
 
       <section className={classes.first_block}>
-        <Header setModalOpen={setModalOpen}/>
+        <Header 
+        setModalOpen={setModalOpen} 
+        inputTxt={inputTxt}
+        showTxt={showTxt}
+        />
         <p className={classes.main_text}>
           Твой фактор<p>Роста</p>
         </p>
@@ -57,6 +66,13 @@ const Main: React.FC = () => {
           с программами корпоративного университета <br></br>
           <span className={classes.brand}>ОФИСМАГ</span>
         </p>
+        <input type="text" value={inputTxt} onChange={(e) => setInputTxt(e.target.value)} 
+        onKeyDown={(e) => {
+          if (e.key=='Enter') {            
+            showTxt(inputTxt);
+          }
+          
+          }} />
         <button>ПРОГРАММЫ</button>
         <Time getTime={getTime} />
         <Carousel />
