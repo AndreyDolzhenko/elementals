@@ -4,6 +4,7 @@ import Header from "../Header";
 import Authorization from "../Authorization";
 import Decorates from "../ui/DecorativeElements";
 import Carousel from "../ui/Carousel";
+import MyCarousel from "../ui/MyCarousel";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
@@ -17,21 +18,22 @@ import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
 
-type Props = {
-  texts: [];
-};
-
-const Main: React.FC<Props> = (texts) => {
+const Main: React.FC = () => {
   const pictures = [
-    <img className={classes.carousel} src="./src/assets/images/picture1.png" />,
-    <img className={classes.carousel} src="./src/assets/images/picture2.png" />,
-    <img className={classes.carousel} src="./src/assets/images/picture3.png" />,
-    <img className={classes.carousel} src="./src/assets/images/picture1.png" />,
-    <img className={classes.carousel} src="./src/assets/images/picture2.png" />,
-    <img className={classes.carousel} src="./src/assets/images/picture3.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture1.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,    
   ];
 
-  // console.log(texts);
+  const texts = [
+    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>, 
+    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>, 
+    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>,
+    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>, 
+    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>
+  ];
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -53,7 +55,7 @@ const Main: React.FC<Props> = (texts) => {
         </p>
         <button>ПРОГРАММЫ</button>
         <Time />
-        <Carousel texts={texts} />
+        <MyCarousel content={pictures} />
         <div className={classes.media}>
           <span>Supported by:</span>
           <Spotify />
@@ -103,7 +105,7 @@ const Main: React.FC<Props> = (texts) => {
             <span style={{ color: "#cd4631" }}>ОФИСМАГ</span>
           </div>
         </div>
-        {/* <Carousel content={pictures} /> */}
+        <MyCarousel texts={texts} />
       </section>
     </div>
   );

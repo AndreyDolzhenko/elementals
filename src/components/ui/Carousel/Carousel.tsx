@@ -20,10 +20,10 @@ const pictures = [
 
 // console.log(texts);
 
-const ContentCarousel = (texts: any) => {
-	console.log(texts);	
+// const ContentCarousel = (texts: any) => {
+// 	console.log(texts);	
 	
-}
+// }
 
 let items = pictures.map(el => el);
 
