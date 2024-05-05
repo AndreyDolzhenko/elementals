@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Time.module.scss";
 
-type Props = {
-  getTime: (event: React.MouseEvent<HTMLHeadingElement>) => void;
-};
-
-const Time: React.FC<Props> = ({ getTime }) => {
+const Time: React.FC = () => {
   // Initialize the current time to the current date and time
   const [time, setTime] = useState(new Date());
 
@@ -24,7 +20,7 @@ const Time: React.FC<Props> = ({ getTime }) => {
   const returnTime = time.toLocaleTimeString();
 
   return (
-    <div>
+    <div title="Время работает на тебя!">
       <div
         style={{
           display: "flex",
@@ -33,7 +29,7 @@ const Time: React.FC<Props> = ({ getTime }) => {
           marginTop: "25px",
         }}
       >
-        <h3 className={classes.h3} onClick={(event) => getTime(event)}>
+        <h3 className={classes.h3}>
           {returnTime}
         </h3>
         <h3>{returnDate}</h3>

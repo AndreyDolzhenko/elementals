@@ -7,58 +7,43 @@ import Carousel from "../ui/Carousel";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
-import DecoreBottom from "../../assets/icons/decoreBottom.svg?react";
+import ClipRed from "../../assets/icons/ClipRed.svg?react";
+import ClipBlack from "../../assets/icons/ClipBlack.svg?react";
 import Time from "../ui/Time";
 import PictogramLeft from "../../assets/icons/pictogramLeft.svg?react";
 import PictogramRight from "../../assets/icons/pictogramRight.svg?react";
-import JohanSmith from "../../assets/icons/JohanSmith.svg?react";
 import Quotes from "../../assets/icons/quotes.svg?react";
 import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
 
-const Main: React.FC = () => {
-  const [inputTxt, setInputTxt] = useState("Click");
-  const showTxt = (inputTxt: string) => {
-    console.log(inputTxt);
-  }
+type Props = {
+  texts: [];
+};
 
-  const [timeMoment, setTimeMoment] = useState("");
+const Main: React.FC<Props> = (texts) => {
+  const pictures = [
+    <img className={classes.carousel} src="./src/assets/images/picture1.png" />,
+    <img className={classes.carousel} src="./src/assets/images/picture2.png" />,
+    <img className={classes.carousel} src="./src/assets/images/picture3.png" />,
+    <img className={classes.carousel} src="./src/assets/images/picture1.png" />,
+    <img className={classes.carousel} src="./src/assets/images/picture2.png" />,
+    <img className={classes.carousel} src="./src/assets/images/picture3.png" />,
+  ];
 
-  const getTime = (event: React.MouseEvent<HTMLHeadingElement>) => {
-    setTimeMoment((event.target as HTMLHeadingElement).innerHTML);
-  };
+  // console.log(texts);
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [login, setLogin] = useState("1");
-  const [password, setPassword] = useState("2");
-
-  const forgotPassword = () => {
-    console.log(
-      `login: ${login}
-       password: ${password}`
-    );
-  };
 
   return (
     <div className={classes.component}>
       {isModalOpen ? (
-        <Authorization
-          modalClose={() => setModalOpen(false)}
-          setLogin={setLogin}
-          setPassword={setPassword}
-          forgotPassword={forgotPassword}
-        />
+        <Authorization modalClose={() => setModalOpen(false)} />
       ) : (
         ""
       )}
-
       <section className={classes.first_block}>
-        <Header 
-        setModalOpen={setModalOpen} 
-        inputTxt={inputTxt}
-        showTxt={showTxt}
-        />
+        <Header setModalOpen={setModalOpen} />
         <p className={classes.main_text}>
           Твой фактор<p>Роста</p>
         </p>
@@ -66,16 +51,9 @@ const Main: React.FC = () => {
           с программами корпоративного университета <br></br>
           <span className={classes.brand}>ОФИСМАГ</span>
         </p>
-        <input type="text" value={inputTxt} onChange={(e) => setInputTxt(e.target.value)} 
-        onKeyDown={(e) => {
-          if (e.key=='Enter') {            
-            showTxt(inputTxt);
-          }
-          
-          }} />
         <button>ПРОГРАММЫ</button>
-        <Time getTime={getTime} />
-        <Carousel />
+        <Time />
+        <Carousel texts={texts} />
         <div className={classes.media}>
           <span>Supported by:</span>
           <Spotify />
@@ -85,50 +63,48 @@ const Main: React.FC = () => {
         <Decorates />
       </section>
       <section className={classes.second_block}>
-        <Blot />
-        <Spring />
+        <ClipRed className={classes.clips} />
         <div className={classes.secondPageTitle}>
-          Talk. Listen. Get inspired by every minute of it.
+          Становись лучше с каждой минутой!
         </div>
         <div className={classes.pictograms}>
           <div>
             <PictogramLeft />
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              ac ultrices odio.
-            </div>
+            <div>Есть вопросы? Это хорошо - значит ты думаешь!</div>
           </div>
           <div>
             <PictogramRight />
             <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              ac ultrices odio.
+              Получай ответы и новые идеи вместе с{" "}
+              <span style={{ color: "#cd4631" }}>Обучалкой УМЦ</span>
             </div>
           </div>
         </div>
         <div className={classes.block_description_two}>
-          <div style={{ margin: 75 }}>
-            <Quotes />
-          </div>
+          <Blot className={classes.blot} />
+          <Spring className={classes.spring} />
+          <Quotes style={{ margin: 75 }} />
           <div className={classes.block_description_text}>
-            One of the best daily podcasts that covers every topic on Spotify.
+            Комфортный ресурс для ежедневной практики
           </div>
           <div className={classes.speaker_name}>
-            Andrey Dols
-            <JohanSmith />
+            Кира Шулагина
+            <br />
+            Руководитель учебно-методического центра ОФИСМАГ
           </div>
         </div>
       </section>
       <section className={classes.third_block}>
+        <ClipBlack className={classes.clips} />
         <div className={classes.block_description_three}>
-          What our listeners say
-          <div>Their experience throughout every platform</div>
+          Что говорят студенты
+          <div>
+            корпоративного университета{" "}
+            <span style={{ color: "#cd4631" }}>ОФИСМАГ</span>
+          </div>
         </div>
-        <Carousel />
+        {/* <Carousel content={pictures} /> */}
       </section>
-      <div style={{ position: "absolute", top: "2823px" }}>
-        <DecoreBottom />
-      </div>
     </div>
   );
 };

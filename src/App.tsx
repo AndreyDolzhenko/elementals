@@ -8,10 +8,12 @@ import "./App.css";
 // const result = await response.json();
 
 function App() {
+
+  const texts = ["Маша", "Лена", "Даша"];
   
   return (
     <div>
-      <Main />    
+      <Main texts={texts} />    
     </div>
   );
 }

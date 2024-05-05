@@ -7,19 +7,10 @@ import Odnoklassniki from "../../assets/icons/odnoklassniki_1.svg?react";
 import Google from "../../assets/icons/google.svg?react";
 
 type Props = {
-  modalClose: () => void;  
-  setLogin: React.Dispatch<React.SetStateAction<string>>;  
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-  forgotPassword: () => void;
+  modalClose: () => void;
 };
 
-const Authorization: React.FC<Props> = ({ 
-  modalClose,  
-  setLogin,
-  setPassword,
-  forgotPassword
- }) => {
-  
+const Authorization: React.FC<Props> = ({ modalClose }) => {
   return (
     <div className={classes.authorizationBaze}>
       <div className={classes.authorizationForm}>
@@ -49,36 +40,20 @@ const Authorization: React.FC<Props> = ({
             type="text"
             id="login"
             placeholder="Логин"
-            onChange={(e) => setLogin(e.target.value)}
           />
           <input
             className={classes.autoInput}
             type="text"
             id="password"
             placeholder="Пароль"
-            onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            className={classNames(classes.autoInput, classes.come_in)}
-            // onClick={() => console.log(
-            //   `login: ${login}
-            //    password: ${password}`)}
-          >
+          <button className={classNames(classes.autoInput, classes.come_in)}>
             Войти
           </button>
         </form>
         <div className={classes.autoBottom}>
-          <span
-            className="menu"
-          >
-            Регистрация
-          </span>
-          <span
-            className="menu"
-            onClick={forgotPassword}
-          >
-            Забыли пароль?
-          </span>
+          <span className="menu">Регистрация</span>
+          <span className="menu">Забыли пароль?</span>
         </div>
       </div>
     </div>

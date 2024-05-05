@@ -3,6 +3,10 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 
 import classes from "./Carousel.module.scss";
 
+type Props = {
+	texts: [];
+}
+
 const handleDragStart = (e: any) => e.preventDefault();
 
 const pictures = [
@@ -14,18 +18,15 @@ const pictures = [
 	<img className={classes.carousel} src="./src/assets/images/picture3.png" onDragStart={handleDragStart} role="presentation" />,
 ];
 
-function ContentCarousel() {
-	return(
-		<>
-		</>
-	);
+// console.log(texts);
+
+const ContentCarousel = (texts: any) => {
+	console.log(texts);	
+	
 }
-
-
 
 let items = pictures.map(el => el);
 
 const Gallery = () => <AliceCarousel mouseTracking items={items} />;
-
 
 export default Gallery;
