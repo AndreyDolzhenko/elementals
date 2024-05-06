@@ -7,19 +7,28 @@ type Props = {
 };
 
 const MyCarousel: React.FC<Props> = (content) => {
-    const blockItems = Object.values(content).map(el => el);
-    let elementsGroup = [];
+    const blockItems = Object.values(content).map(el => el);   
+    
+    const createCarousel = (items: [][]) => {
+     return items.map(el => el);
+    }
 
-    elementsGroup = [... Object.values(blockItems)[0]];
-    console.log(Object.values(blockItems).flat(1)[0]);
-
-  return <ol className={classes.parameters}>  
+  return (
+    <>
+  <ol className={classes.parameters}> 
+  {createCarousel(blockItems)} 
       
   {    
-    blockItems.map(el => el)
+    // blockItems.map(el => el)    
   }
   
-  </ol>;
+  </ol>
+  <div className={classes.arrows}>
+    <div className={classes.arrow_left}></div>
+    <div className={classes.arrow_right}></div>
+  </div>
+  </>
+  )
 };
 
 export default MyCarousel;

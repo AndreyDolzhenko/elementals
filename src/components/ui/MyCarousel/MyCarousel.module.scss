@@ -3,6 +3,38 @@
     overflow: hidden;
     display: flex;
     justify-content: space-around;
-    margin: 50px; 
+    margin: 50px 0 20px 0; 
     font-size: 12px;
+}
+
+.arrows {
+    display: flex;
+    width: 50px;
+    justify-content: space-between;
+}
+
+.arrow_left {
+    width: 10px;
+    height: 10px;
+    transform: rotate(-45deg);
+    border-top: 1px solid;
+    border-left: 1px solid;
+    cursor: pointer;    
+}
+
+.arrow_left:active {
+    color: grey;
+}
+
+.arrow_right {
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-top: 1px solid;
+    border-right: 1px solid;
+    cursor: pointer;
+}
+
+.arrow_right:active {
+    color: grey;
 }
