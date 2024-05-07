@@ -3,7 +3,6 @@ import { useState } from "react";
 import Header from "../Header";
 import Authorization from "../Authorization";
 import Decorates from "../ui/DecorativeElements";
-import Carousel from "../ui/Carousel";
 import MyCarousel from "../ui/MyCarousel";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
@@ -24,15 +23,22 @@ const Main: React.FC = () => {
     <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
     <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
     <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
+    <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
     <img className={classes.pictures} src="./src/assets/images/picture3.png" />,    
   ];
-
   const texts = [
-    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>, 
-    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>, 
-    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>,
-    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>, 
-    <li className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</li>
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
+    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -47,7 +53,7 @@ const Main: React.FC = () => {
       <section className={classes.first_block}>
         <Header setModalOpen={setModalOpen} />
         <p className={classes.main_text}>
-          Твой фактор<p>Роста</p>
+          Твой фактор<br></br><span>Роста</span>
         </p>
         <p className={classes.main_text_second_part}>
           с программами корпоративного университета <br></br>
@@ -105,7 +111,7 @@ const Main: React.FC = () => {
             <span style={{ color: "#cd4631" }}>ОФИСМАГ</span>
           </div>
         </div>
-        <MyCarousel texts={texts} />
+        <MyCarousel content={texts} />
       </section>
     </div>
   );
