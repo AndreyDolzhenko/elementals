@@ -53,7 +53,8 @@
   align-items: center;
   margin: 0 auto;
   padding: 5rem;
-  text-align: center;  
+  text-align: center;
+  background: #FFFAFA;
 }
 
 .secondPageTitle {
@@ -148,12 +149,25 @@
   margin: 10px 0 0 0;
 }
 
-.student_reviews_item {   
+.student_reviews_item {
   margin: 0 20px 0 20px;
-  translate: -10%;  
+  translate: -10%;
 }
 
-.pictures{
-  height: 400px; 
+.pictures {
+  height: 400px;
   border-radius: 12px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;  
+  margin: 5px 0 0 0;
+  color: rgb(205, 70, 49);
+  background: #FFFAFA;
+  .footer_content {
+    width: 1160px;
+    margin: 20px;
+    font-size: 12px;
+  }
 }

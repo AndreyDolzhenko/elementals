@@ -24,9 +24,7 @@ const Main: React.FC = () => {
     <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
     <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
     <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,    
+      
   ];
   const texts = [
     <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
@@ -112,6 +110,9 @@ const Main: React.FC = () => {
           </div>
         </div>
         <MyCarousel content={texts} />
+      </section>
+      <section className={classes.footer}>      
+      <div className={classes.footer_content}>© ОФИСМАГ, 2024</div>
       </section>
     </div>
   );

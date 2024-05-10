@@ -1,4 +1,4 @@
-import { ReactHTML, useState } from "react";
+import { ReactHTML, useState, useEffect } from "react";
 
 import classes from "./MyCarousel.module.scss";
 
@@ -7,23 +7,33 @@ type Props = {
 };
 
 const MyCarousel: React.FC<Props> = ({ content }) => {
-  const widtItem = 400;
+  const widtItem = 400; // шаг смещения карусели
+  // значение параметра translate: itemPosition
   const [itemPosition, setItemPosition] = useState(widtItem);
-  const startPosition = (widtItem * content.length - widtItem * 2) / 2;
-  console.log(startPosition);
+  // граница смещения в одну сторону с учётом количества единиц контента
+  const offsetLimit = (widtItem * content.length - widtItem * 2) / 2;
+  // функция, обеспечивающая смещение карусели на shift в рамках границ смещения
   const moveItem = (shift: number) => {
-    if (itemPosition < startPosition || itemPosition > -startPosition) {
+    if (itemPosition < offsetLimit || itemPosition > -offsetLimit) {
       setItemPosition(itemPosition - shift);
     }
-    if (itemPosition > startPosition) {
+    if (itemPosition > offsetLimit) {
       setItemPosition(-itemPosition + widtItem);
     }
-    if (itemPosition < -startPosition) {
+    if (itemPosition < -offsetLimit) {
       setItemPosition(-itemPosition - widtItem);
     }
-    console.log(itemPosition);
+    // console.log(itemPosition);
   };
-  
+ 
+  // условие, при котором срабатывает функция moveItem - АвтоКарусель
+  const [count, setCount] = useState(""); 
+  useEffect(() => {
+    const interval = setInterval(() => setCount(Date()), 2000);
+    moveItem(widtItem);
+    // console.log(count);
+    return () => clearInterval(interval);
+  }, [count]);
   // setInterval(() => moveItem(widtItem), 1000);
 
   return (

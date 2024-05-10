@@ -45,7 +45,7 @@ li {
   font-weight: 700;
   line-height: 25.6px;
   text-align: left;
-  list-style-type: none;
+  /* list-style-type: none; */
 }
 
 span {
@@ -58,10 +58,6 @@ span {
 
 .menu:hover {
   color: #808080;
-}
-
-.alice-carousel__stage {
-  display: flex;
 }
 
 .media > span{
