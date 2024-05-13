@@ -17,6 +17,7 @@ type Props = {
 type FormContent = {
   login: string;
   password: string;
+  fio: string;
   eMail: string;
 }
 
@@ -37,16 +38,19 @@ const Authorization: React.FC<Props> = ({ modalClose }) => {
   const [formContent, setFormContent] = useState<FormContent>({
     login: "",
     password: "",
+    fio: "",
     eMail: "",
   });
 
-  const [showMail, setShowMail] = useState("none");
-  const [typeInput, setTypeInput] = useState("password");
-  const [showPass, setShowPass] = useState("none");
+  const [showMail, setShowMail] = useState("none"); // скрытие полей для регистрации
+  const [typeInput, setTypeInput] = useState("password"); // тип текста в password
+  const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
+  const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
 
   const changeShowPass = () => {
     typeInput == "text" ? setTypeInput("password") : setTypeInput("text");
     showPass == "none" ? setShowPass("block") : setShowPass("none");
+    closePass == "none" ? setClosePass("block") : setClosePass("none");
   }
 
   return (
@@ -79,7 +83,7 @@ const Authorization: React.FC<Props> = ({ modalClose }) => {
             id="login"            
             placeholder="Логин"
             value={formContent.login}
-            onChange={(e) => (setFormContent({login: e.target.value, password: formContent.password, eMail: formContent.eMail}))}
+            onChange={(e) => (setFormContent({login: e.target.value, password: formContent.password, fio: formContent.fio, eMail: formContent.eMail}))}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
           <div className={classNames(classes.autoInput)} style={{display: "flex"}}>
@@ -89,12 +93,22 @@ const Authorization: React.FC<Props> = ({ modalClose }) => {
             id="password"
             placeholder="Пароль"
             value={formContent.password}
-            onChange={(e) => (setFormContent({login: formContent.login, password: e.target.value, eMail: formContent.eMail}))}
+            onChange={(e) => (setFormContent({login: formContent.login, password: e.target.value, fio: formContent.fio, eMail: formContent.eMail}))}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
-          <div className={classes.showPassword} onClick={() => typeInput == "text" ? setTypeInput("password") : setTypeInput("text")}><ShowPassword /></div>
-          {/* <div className={classes.showPassword} style={{display: showPass}} onClick={() => changeShowPass()}><ClosePassword /></div> */}
+          <div className={classes.showPassword} style={{display: showPass}} onClick={() => changeShowPass()}><ShowPassword /></div>
+          <div className={classes.showPassword} style={{display: closePass}} onClick={() => changeShowPass()}><ClosePassword /></div>
           </div>
+          <input
+            className={classNames(classes.autoInput, classes.mail)}
+            style={{display: showMail}}
+            type="text"
+            id="fio"
+            placeholder="ФИО"
+            value={formContent.fio}
+            onChange={(e) => (setFormContent({login: formContent.login, password: formContent.password, fio: e.target.value, eMail: formContent.eMail}))}
+            onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
+          />
           <input
             className={classNames(classes.autoInput, classes.mail)}
             style={{display: showMail}}
@@ -102,7 +116,7 @@ const Authorization: React.FC<Props> = ({ modalClose }) => {
             id="mail"
             placeholder="e-mail"
             value={formContent.eMail}
-            onChange={(e) => (setFormContent({login: formContent.login, password: formContent.password, eMail: e.target.value}))}
+            onChange={(e) => (setFormContent({login: formContent.login, password: formContent.password, fio: formContent.fio, eMail: e.target.value}))}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
           <button className={classNames(classes.autoInput, classes.come_in)}>
