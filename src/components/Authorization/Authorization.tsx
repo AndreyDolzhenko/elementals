@@ -18,34 +18,32 @@ type FormContent = {
   login: string;
   password: string;
   fio: string;
-  eMail: string;
+  mail: string;
 }
 
 const Authorization: React.FC<Props> = ({ modalClose }) => {
-
-  const formData = {
-    login: "1",
-    password: "2",
-  };
-
-  const getFormContent = (id: string, data:string) => {
-    for (let key in formData) {
-      // key == id ? formData[key] = data : "";
-    }
-    console.log(formData);
-  }
 
   const [formContent, setFormContent] = useState<FormContent>({
     login: "",
     password: "",
     fio: "",
-    eMail: "",
+    mail: "",
   });
 
   const [showMail, setShowMail] = useState("none"); // скрытие полей для регистрации
   const [typeInput, setTypeInput] = useState("password"); // тип текста в password
   const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
   const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormContent((prev) => ({
+      ...prev,
+      [name]: value,
+    }))    
+  }
+
+  console.log(formContent);
 
   const changeShowPass = () => {
     typeInput == "text" ? setTypeInput("password") : setTypeInput("text");
@@ -80,20 +78,20 @@ const Authorization: React.FC<Props> = ({ modalClose }) => {
           <input
             className={classes.autoInput}
             type="text"
-            id="login"            
+            name="login"            
             placeholder="Логин"
-            value={formContent.login}
-            onChange={(e) => (setFormContent({login: e.target.value, password: formContent.password, fio: formContent.fio, eMail: formContent.eMail}))}
+            value={formContent.login}            
+            onChange={(e) => handleChange(e)}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
           <div className={classNames(classes.autoInput)} style={{display: "flex"}}>
           <input
             className={classNames(classes.password)}
             type={typeInput}
-            id="password"
+            name="password"
             placeholder="Пароль"
             value={formContent.password}
-            onChange={(e) => (setFormContent({login: formContent.login, password: e.target.value, fio: formContent.fio, eMail: formContent.eMail}))}
+            onChange={(e) => handleChange(e)}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
           <div className={classes.showPassword} style={{display: showPass}} onClick={() => changeShowPass()}><ShowPassword /></div>
@@ -103,20 +101,20 @@ const Authorization: React.FC<Props> = ({ modalClose }) => {
             className={classNames(classes.autoInput, classes.mail)}
             style={{display: showMail}}
             type="text"
-            id="fio"
+            name="fio"
             placeholder="ФИО"
             value={formContent.fio}
-            onChange={(e) => (setFormContent({login: formContent.login, password: formContent.password, fio: e.target.value, eMail: formContent.eMail}))}
+            onChange={(e) => handleChange(e)}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
           <input
             className={classNames(classes.autoInput, classes.mail)}
             style={{display: showMail}}
             type="text"
-            id="mail"
+            name="mail"
             placeholder="e-mail"
-            value={formContent.eMail}
-            onChange={(e) => (setFormContent({login: formContent.login, password: formContent.password, fio: formContent.fio, eMail: e.target.value}))}
+            value={formContent.mail}
+            onChange={(e) => handleChange(e)}
             onKeyDown = {(e) => (e.key == "Tab" ? console.log(formContent) : "")}
           />
           <button className={classNames(classes.autoInput, classes.come_in)}>
