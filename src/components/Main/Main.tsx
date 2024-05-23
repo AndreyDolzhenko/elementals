@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "../Header";
 import Authorization from "../Authorization";
+import Time from "../ui/Time";
 import Decorates from "../ui/DecorativeElements";
 import MyCarousel from "../ui/MyCarousel";
+import usersStore from "../../stores/usersStore";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
 import ClipRed from "../../assets/icons/ClipRed.svg?react";
 import ClipBlack from "../../assets/icons/ClipBlack.svg?react";
-import Time from "../ui/Time";
 import PictogramLeft from "../../assets/icons/pictogramLeft.svg?react";
 import PictogramRight from "../../assets/icons/pictogramRight.svg?react";
 import Quotes from "../../assets/icons/quotes.svg?react";
 import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
+import { formToJSON } from "axios";
 
 const Main: React.FC = () => {
   const pictures = [
@@ -40,6 +42,18 @@ const Main: React.FC = () => {
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
+
+  const { fetchAllUsers, users } = usersStore;
+
+  // fetchAllUsers();
+
+  useEffect(() => {
+    console.log(users);
+    return () => console.log(users);
+  }, [fetchAllUsers()]);
+  
+
+  
 
   return (
     <div className={classes.component}>

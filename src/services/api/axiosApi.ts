@@ -29,3 +29,5 @@ const axiosApi = {
         return data;
     },
 };
+
+export default axiosApi;
