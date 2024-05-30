@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { observer } from "mobx-react";
+import { toJS } from "mobx";
 
 import Header from "../Header";
 import Authorization from "../Authorization";
@@ -17,9 +19,8 @@ import Quotes from "../../assets/icons/quotes.svg?react";
 import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
-import { formToJSON } from "axios";
 
-const Main: React.FC = () => {
+const Main: React.FC = observer(() => {
   const pictures = [
     <img className={classes.pictures} src="./src/assets/images/picture1.png" />,
     <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
@@ -48,12 +49,19 @@ const Main: React.FC = () => {
   // fetchAllUsers();
 
   useEffect(() => {
-    console.log(users);
-    return () => console.log(users);
-  }, [fetchAllUsers()]);
-  
+    
+    const getData = async () => {
+      await fetchAllUsers();
+    }
 
-  
+    getData().then(() => {
+      console.log([...users]);
+    })
+
+    // fetchAllUsers();
+    console.log(users);
+    
+  }, [fetchAllUsers]);
 
   return (
     <div className={classes.component}>
@@ -64,6 +72,9 @@ const Main: React.FC = () => {
       )}
       <section className={classes.first_block}>
         <Header setModalOpen={setModalOpen} />
+        <ul>{
+          // Object.values(users[0]).map(el => <li>{el}</li>)
+          }</ul>
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
         </p>
@@ -130,6 +141,6 @@ const Main: React.FC = () => {
       </section>
     </div>
   );
-};
+});
 
 export default Main;

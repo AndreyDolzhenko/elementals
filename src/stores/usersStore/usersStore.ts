@@ -13,6 +13,7 @@ class UsersStore {
     constructor() {
         makeObservable(this, {
             users: observable,
+            fetchAllUsers: action.bound,
         });
     };   
     
