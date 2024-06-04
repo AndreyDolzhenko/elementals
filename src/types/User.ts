@@ -4,3 +4,10 @@ export type User = {
     fio: string,
     mail: string,    
 };
+
+export type CreateUser = {    
+    login: string,
+    password: string,
+    fio: string,
+    mail: string,    
+};

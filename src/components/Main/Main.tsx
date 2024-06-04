@@ -49,17 +49,19 @@ const Main: React.FC = observer(() => {
   // fetchAllUsers();
 
   useEffect(() => {
+
+    fetchAllUsers();
     
-    const getData = async () => {
-      await fetchAllUsers();
-    }
+    // const getData = async () => {
+    //   await fetchAllUsers();
+    // }
 
-    getData().then(() => {
-      console.log([...users]);
-    })
+    // getData().then(() => {
+    //   console.log([...users]);
+    // })
 
-    // fetchAllUsers();
-    console.log(users);
+    // // fetchAllUsers();
+    // console.log(users);
     
   }, [fetchAllUsers]);
 
@@ -73,7 +75,7 @@ const Main: React.FC = observer(() => {
       <section className={classes.first_block}>
         <Header setModalOpen={setModalOpen} />
         <ul>{
-          // Object.values(users[0]).map(el => <li>{el}</li>)
+          users.length !== 0 ? Object.values(users[1]).map(el => <li>{el}</li>) : ""
           }</ul>
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
