@@ -23,45 +23,29 @@ import classes from "./Main.module.scss";
 const Main: React.FC = observer(() => {
   const pictures = [
     <img className={classes.pictures} src="./src/assets/images/picture1.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture2.png" />,
-    <img className={classes.pictures} src="./src/assets/images/picture3.png" />,
-      
+    <img className={classes.pictures} src="./src/assets/images/historyUMC_demo.gif" />,
+    <img className={classes.pictures} src="./src/assets/images/portalUMC_demo.gif" />,
+    <img className={classes.pictures} src="./src/assets/images/stm_demo.gif" />,    
+    <img className={classes.pictures} src="./src/assets/images/spc_demo.gif" />,
   ];
   const texts = [
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>,
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>, 
-    <span className={classes.student_reviews_item}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimvel iam, quis nostrud exercitation ullamco laboris...</span>
+    <span className={classes.student_reviews_item}>Тренинг был интересный и эксперты доступно излагали материал.</span>, 
+    <span className={classes.student_reviews_item}>Внесена ясность при оформлении заказов за рублики.</span>, 
+    <span className={classes.student_reviews_item}>Тренинг помог изучить: вербализацию, типы манипуляций, способы защиты от манипуляций.</span>,
+    <span className={classes.student_reviews_item}>Закрепила навыки чек листа при согласовании заказа с клиентом.</span>, 
+    <span className={classes.student_reviews_item}>Всё хорошо! Во время тренинга закрепили знания за весь период работы.</span>,
+    <span className={classes.student_reviews_item}>Научилась анализировать счета клиента, допродавать, расширять ассортимент.</span>,
+    <span className={classes.student_reviews_item}>Хочу, чтобы чаще были такие тренинги, очень полезны!</span>, 
+    <span className={classes.student_reviews_item}>Спасибо большое за тренинг!</span>,    
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
 
   const { fetchAllUsers, users } = usersStore;
 
-  // fetchAllUsers();
-
   useEffect(() => {
 
     fetchAllUsers();
-    
-    // const getData = async () => {
-    //   await fetchAllUsers();
-    // }
-
-    // getData().then(() => {
-    //   console.log([...users]);
-    // })
-
-    // // fetchAllUsers();
-    // console.log(users);
     
   }, [fetchAllUsers]);
 

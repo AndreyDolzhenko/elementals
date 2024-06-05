@@ -29,7 +29,7 @@ const MyCarousel: React.FC<Props> = ({ content }) => {
   // условие, при котором срабатывает функция moveItem - АвтоКарусель
   const [count, setCount] = useState(""); 
   useEffect(() => {
-    const interval = setInterval(() => setCount(Date()), 2000);
+    const interval = setInterval(() => setCount(Date()), 4000);
     moveItem(widtItem);
     // console.log(count);
     return () => clearInterval(interval);
@@ -38,7 +38,7 @@ const MyCarousel: React.FC<Props> = ({ content }) => {
 
   return (
     <>
-      <ol className={classes.parameters}>
+      <ul className={classes.parameters}>
         {content.map((el, index) => (
           <li
             className={classes.carousael_items}
@@ -48,7 +48,7 @@ const MyCarousel: React.FC<Props> = ({ content }) => {
             {el}
           </li>
         ))}
-      </ol>
+      </ul>
       <div className={classes.arrows}>
         <div
           className={classes.arrow_left}
