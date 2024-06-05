@@ -22,11 +22,13 @@ import classes from "./Main.module.scss";
 
 const Main: React.FC = observer(() => {
   const pictures = [
-    <img className={classes.pictures} src="./src/assets/images/picture1.png" />,
-    <img className={classes.pictures} src="./src/assets/images/historyUMC_demo.gif" />,
-    <img className={classes.pictures} src="./src/assets/images/portalUMC_demo.gif" />,
-    <img className={classes.pictures} src="./src/assets/images/stm_demo.gif" />,    
-    <img className={classes.pictures} src="./src/assets/images/spc_demo.gif" />,
+    <img className={classes.pictures} src="./src/assets/images/irina.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/artem.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/chech.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/damir.jpg" />,        
+    <img className={classes.pictures} src="./src/assets/images/katya.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/misharin.jpg" />,    
+    <img className={classes.pictures} src="./src/assets/images/round.jpg" />,
   ];
   const texts = [
     <span className={classes.student_reviews_item}>Тренинг был интересный и эксперты доступно излагали материал.</span>, 

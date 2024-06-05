@@ -24,6 +24,7 @@ type FormContent = {
 };
 
 const Authorization: React.FC<Props> = observer(({ modalClose }) => {
+  
   function registrationCheck(parameters: CreateUser, users: [User]) {
     if (parameters.login !== "" && parameters.password !== "") {
       users.map((el) => {
