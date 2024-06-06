@@ -10,20 +10,20 @@
   background: rgba(240, 248, 255, 0.7);
 }
 
-.authorizationForm {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  background: lightgray;
-}
-
 .autoClose {
   text-align: end;
   font-size: 20px;
   color: lightgray;
   cursor: pointer;
   margin: -30px -30px 0 0;
+}
+
+.authorizationForm {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: lightgray;
 }
 
 .autoTop {
@@ -42,56 +42,4 @@
 }
 .social_networks:hover {
   fill: #808080;
-}
-
-.autoForm {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-}
-
-.autoInput {
-  width: 50%;
-  height: 30px;
-  margin: 5px;
-  border-radius: 5px;
-  border: 0.5px solid beige;
-  background: aliceblue;
-}
-
-.password {
-  width: 100%;
-  border: 0;
-  height: 100%;
-  // letter-spacing: 2px;
-  // font-size: 20px;
-  color: grey;
-  background: aliceblue;
-  // padding-left: 5px;
-}
-
-.showPassword {
-  width: 10%;
-  color: lightgray;
-  margin: 5px;
-  cursor: pointer;
-}
-
-.come_in {
-  background: darkgray;
-  text-align: center;
-  padding: 0;
-  color: aliceblue;
-}
-.come_in:hover {
-  border: 2px solid #808080;
-  color: #faebd7;
-  background: #c0c0c0;
-}
-
-.autoBottom {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0 10px 15px;
 }

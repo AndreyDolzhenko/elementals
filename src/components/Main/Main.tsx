@@ -59,10 +59,7 @@ const Main: React.FC = observer(() => {
         ""
       )}
       <section className={classes.first_block}>
-        <Header setModalOpen={setModalOpen} />
-        <ul>{
-          users.length !== 0 ? Object.values(users[1]).map(el => <li>{el}</li>) : ""
-          }</ul>
+        <Header setModalOpen={setModalOpen} />        
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
         </p>
