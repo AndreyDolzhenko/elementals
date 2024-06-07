@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import classes from "./Registration.module.scss";
+import classes from "./Autorisation.module.scss";
 
 import usersStore from "../../stores/usersStore";
 import ShowPassword from "../../assets/icons/showPassword.svg?react";
@@ -13,7 +13,7 @@ type FormContent = {
   mail: string;
 };
 
-const Registration = () => {
+const Autorisation = () => {
   const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     createUser(formContent);
@@ -27,7 +27,9 @@ const Registration = () => {
   });
 
   const { createUser, users } = usersStore;
+  const [userData, setUserData] = useState({});
 
+  const [showMail, setShowMail] = useState("none"); // скрытие полей для регистрации
   const [typeInput, setTypeInput] = useState("password"); // тип текста в password
   const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
   const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
@@ -88,24 +90,6 @@ const Registration = () => {
             <ClosePassword />
           </div>
         </div>
-        <input
-          className={classNames(classes.autoInput, classes.mail)}
-          type="text"
-          name="fio"
-          placeholder="ФИО"
-          value={formContent.fio}
-          onChange={(e) => handleChange(e)}
-          onKeyDown={(e) => (e.key == "Tab" ? console.log(formContent) : "")}
-        />
-        <input
-          className={classNames(classes.autoInput, classes.mail)}
-          type="text"
-          name="mail"
-          placeholder="e-mail"
-          value={formContent.mail}
-          onChange={(e) => handleChange(e)}
-          onKeyDown={(e) => (e.key == "Tab" ? console.log(formContent) : "")}
-        />
         <button
           className={classNames(classes.autoInput, classes.come_in)}
           onClick={(e) => handleSignUp(e)}
@@ -113,9 +97,11 @@ const Registration = () => {
           Войти
         </button>
       </form>
-      <br />
+      <div className={classes.autoBottom}>
+        <span className="menu">Забыли пароль?</span>
+      </div>
     </>
   );
 };
 
-export default Registration;
+export default Autorisation;

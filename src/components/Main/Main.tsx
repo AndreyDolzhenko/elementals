@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { toJS } from "mobx";
 
 import Header from "../Header";
-import Authorization from "../Authorization";
+import Enter from "../Enter";
 import Time from "../ui/Time";
 import Decorates from "../ui/DecorativeElements";
 import MyCarousel from "../ui/MyCarousel";
@@ -43,18 +43,18 @@ const Main: React.FC = observer(() => {
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const { fetchAllUsers, users } = usersStore;
+  // const { fetchAllUsers, users } = usersStore;
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    fetchAllUsers();
+  //   fetchAllUsers();
     
-  }, [fetchAllUsers]);
+  // }, [fetchAllUsers]);
 
   return (
     <div className={classes.component}>
       {isModalOpen ? (
-        <Authorization modalClose={() => setModalOpen(false)} />
+        <Enter modalClose={() => setModalOpen(false)} />
       ) : (
         ""
       )}
