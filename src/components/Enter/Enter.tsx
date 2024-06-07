@@ -18,11 +18,16 @@ type Props = {
 const Enter: React.FC<Props> = observer(({ modalClose }) => {
 
   const [inputSelection, setInputSelection] = useState(<></>); 
-  const [textColor, setTextColor] = useState("#213547"); 
+  const [textColor, setTextColor] = useState(["#213547", "#213547"]); 
 
-  const changeEnter = (option: JSX.Element) => {
+  const changeEnter = (option: JSX.Element, text: String) => {
+    if (text === "Авторизация") {
+      setTextColor(["#213547", "darkgray"]);
+    } 
+    if (text === "Регистрация") {
+      setTextColor(["darkgray", "#213547"]);
+    }    
     setInputSelection(option);   
-    textColor == "#213547" ? setTextColor("darkgray") : setTextColor("#213547")     
   }
 
   return (
@@ -34,17 +39,15 @@ const Enter: React.FC<Props> = observer(({ modalClose }) => {
         <div className={classes.autoTop}>
           <div
             className={classes.autorisation}
-            style={{color: textColor}}
-            // style={{color: `${inputSelection === <Autorisation /> ? "darkgray" : "#213547"}`}}
-            onClick={() => changeEnter(<Autorisation />)}
+            style={{color: textColor[0]}}            
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => changeEnter(<Autorisation />, e.target.innerText)}
           >
             Авторизация
           </div>
           <div
             className={classes.registration}
-            style={{color: textColor}}
-            // style={{color: `${inputSelection === <Registration /> ? "#213547" : "darkgray"}`}}
-            onClick={() => changeEnter(<Registration />)}
+            style={{color: textColor[1]}}            
+            onClick={(e) => changeEnter(<Registration />, e.target.innerText)}
           >
             Регистрация
           </div>
