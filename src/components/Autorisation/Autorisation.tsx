@@ -26,10 +26,8 @@ const Autorisation = () => {
     mail: "",
   });
 
-  const { createUser, users } = usersStore;
-  const [userData, setUserData] = useState({});
-
-  const [showMail, setShowMail] = useState("none"); // скрытие полей для регистрации
+  const { createUser, users } = usersStore; 
+  
   const [typeInput, setTypeInput] = useState("password"); // тип текста в password
   const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
   const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
@@ -53,6 +51,7 @@ const Autorisation = () => {
   return (
     <>
       <form className={classes.autoForm}>
+{/* / инпут для ввода логина */}
         <input
           className={classes.autoInput}
           type="text"
@@ -62,6 +61,7 @@ const Autorisation = () => {
           onChange={(e) => handleChange(e)}
           onKeyDown={(e) => (e.key == "Tab" ? console.log(formContent) : "")}
         />
+{/* / блок с инпутом для ввода пароля, компонентами для скрытия и предъявления пароля */}
         <div
           className={classNames(classes.autoInput)}
           style={{ display: "flex" }}
@@ -90,6 +90,7 @@ const Autorisation = () => {
             <ClosePassword />
           </div>
         </div>
+{/* / кнопка "Войти" */}
         <button
           className={classNames(classes.autoInput, classes.come_in)}
           onClick={(e) => handleSignUp(e)}

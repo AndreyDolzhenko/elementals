@@ -110,7 +110,7 @@ const Registration = () => {
           className={classNames(classes.autoInput, classes.come_in)}
           onClick={(e) => handleSignUp(e)}
         >
-          Войти
+          Зарегистрироваться
         </button>
       </form>
       <br />

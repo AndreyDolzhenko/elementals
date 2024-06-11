@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import classes from "./Enter.module.scss";
 
@@ -19,7 +19,7 @@ const Enter: React.FC<Props> = observer(({ modalClose }) => {
 
   const [inputSelection, setInputSelection] = useState(<></>); 
   const [textColor, setTextColor] = useState(["#213547", "#213547"]); 
-
+// функция для вызова нужной формы Авторизации/Регистрации и смены цвета у названия формы
   const changeEnter = (option: JSX.Element, text: String) => {
     if (text === "Авторизация") {
       setTextColor(["#213547", "darkgray"]);
@@ -37,17 +37,19 @@ const Enter: React.FC<Props> = observer(({ modalClose }) => {
           X
         </div>
         <div className={classes.autoTop}>
+{/* // вызываем компонент с формой для авторизации */}
           <div
             className={classes.autorisation}
             style={{color: textColor[0]}}            
-            onClick={(e: React.MouseEvent<HTMLDivElement>) => changeEnter(<Autorisation />, e.target.innerText)}
+            onClick={(e) => changeEnter(<Autorisation />, (e.target as HTMLInputElement).innerText)}
           >
             Авторизация
           </div>
+{/* // вызываем компонент с формой для регистрации */}
           <div
             className={classes.registration}
             style={{color: textColor[1]}}            
-            onClick={(e) => changeEnter(<Registration />, e.target.innerText)}
+            onClick={(e) => changeEnter(<Registration />, (e.target as HTMLInputElement).innerText)}
           >
             Регистрация
           </div>
