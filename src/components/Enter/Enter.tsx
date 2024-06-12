@@ -41,7 +41,7 @@ const Enter: React.FC<Props> = observer(({ modalClose }) => {
           <div
             className={classes.autorisation}
             style={{color: textColor[0]}}            
-            onClick={(e) => changeEnter(<Autorisation />, (e.target as HTMLInputElement).innerText)}
+            onClick={(e) => changeEnter(<Autorisation modalClose={modalClose} />, (e.target as HTMLInputElement).innerText)}
           >
             Авторизация
           </div>
@@ -49,7 +49,7 @@ const Enter: React.FC<Props> = observer(({ modalClose }) => {
           <div
             className={classes.registration}
             style={{color: textColor[1]}}            
-            onClick={(e) => changeEnter(<Registration />, (e.target as HTMLInputElement).innerText)}
+            onClick={(e) => changeEnter(<Registration modalClose={modalClose} />, (e.target as HTMLInputElement).innerText)}
           >
             Регистрация
           </div>

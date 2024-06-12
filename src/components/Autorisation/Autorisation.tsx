@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+
 import classNames from "classnames";
 import classes from "./Autorisation.module.scss";
-
 import usersStore from "../../stores/usersStore";
 import ShowPassword from "../../assets/icons/showPassword.svg?react";
 import ClosePassword from "../../assets/icons/closePassword.svg?react";
@@ -13,10 +13,15 @@ type FormContent = {
   mail: string;
 };
 
-const Autorisation = () => {
+type Props = {
+  modalClose: () => void;
+}
+
+const Autorisation: React.FC<Props> = ({modalClose}) => {
   const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     createUser(formContent);
+    modalClose();
   };
 
   const [formContent, setFormContent] = useState<FormContent>({
@@ -39,8 +44,6 @@ const Autorisation = () => {
       [name]: value,
     }));
   };
-
-  console.log(formContent);
 
   const changeShowPass = () => {
     typeInput == "text" ? setTypeInput("password") : setTypeInput("text");

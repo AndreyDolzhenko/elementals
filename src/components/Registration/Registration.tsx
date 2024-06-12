@@ -13,10 +13,15 @@ type FormContent = {
   mail: string;
 };
 
-const Registration = () => {
+type Props = {
+  modalClose: () => void;
+}
+
+const Registration: React.FC<Props> = ({modalClose}) => {
   const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     createUser(formContent);
+    modalClose();
   };
 
   const [formContent, setFormContent] = useState<FormContent>({
@@ -39,8 +44,6 @@ const Registration = () => {
       [name]: value,
     }));
   };
-
-  console.log(formContent);
 
   const changeShowPass = () => {
     typeInput == "text" ? setTypeInput("password") : setTypeInput("text");

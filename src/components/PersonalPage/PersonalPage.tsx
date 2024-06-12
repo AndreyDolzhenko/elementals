@@ -5,7 +5,6 @@ import { toJS } from "mobx";
 import Header from "../Header";
 import Enter from "../Enter";
 import Time from "../ui/Time";
-import Decorates from "../ui/DecorativeElements";
 import MyCarousel from "../ui/MyCarousel";
 import usersStore from "../../stores/usersStore";
 import Spotify from "../../assets/icons/spotify.svg?react";
@@ -18,18 +17,10 @@ import PictogramRight from "../../assets/icons/pictogramRight.svg?react";
 import Quotes from "../../assets/icons/quotes.svg?react";
 import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
-import classes from "./Main.module.scss";
+import classes from "./PersonalPage.module.scss";
 
-const Main: React.FC = observer(() => {
-  const pictures = [
-    <img className={classes.pictures} src="./src/assets/images/irina.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/artem.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/chech.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/damir.jpg" />,        
-    <img className={classes.pictures} src="./src/assets/images/katya.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/misharin.jpg" />,    
-    <img className={classes.pictures} src="./src/assets/images/round.jpg" />,
-  ];
+const PersonalPage: React.FC = observer(() => {
+  
   const texts = [
     <span className={classes.student_reviews_item}>Тренинг был интересный и эксперты доступно излагали материал.</span>, 
     <span className={classes.student_reviews_item}>Внесена ясность при оформлении заказов за рублики.</span>, 
@@ -61,21 +52,22 @@ const Main: React.FC = observer(() => {
       <section className={classes.first_block}>
         <Header setModalOpen={setModalOpen} />        
         
-        <p className={classes.main_text_second_part}></p>
-        <ul>{
-          users.length !== 0 ? Object.values(users[1]).map(el => <li>{el}</li>) : ""
-          }</ul>
+        {/* <p className={classes.brand}>Добрый день, {users[0].fio}</p> */}
+        <p className={classes.main_text_second_part}>Выберите программу для развития навыков:</p>
+        {/* <ul>{
+          users.length !== 0 ? Object.values(users[0]).map(el => <li>{el}</li>) : ""
+          }</ul> */}
 
         <button>ПРОГРАММЫ</button>
         <Time />
-        <MyCarousel content={pictures} />
+        
         <div className={classes.media}>
           <span>Supported by:</span>
           <Spotify />
           <GooglePodcast />
           <Youtube />
         </div>
-        <Decorates />
+        
       </section>
       <section className={classes.second_block}>
         <ClipRed className={classes.clips} />
@@ -127,4 +119,4 @@ const Main: React.FC = observer(() => {
   );
 });
 
-export default Main;
+export default PersonalPage;
