@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import Main from "../Main";
 import PersonalPage from "../PersonalPage";

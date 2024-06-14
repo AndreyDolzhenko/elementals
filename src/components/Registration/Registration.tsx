@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import classNames from "classnames";
 import classes from "./Registration.module.scss";
 
@@ -18,10 +19,14 @@ type Props = {
 }
 
 const Registration: React.FC<Props> = ({modalClose}) => {
+
+  const navigate = useNavigate();
+
   const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     createUser(formContent);
-    modalClose();
+    navigate("/personal-page");
+    // modalClose();
   };
 
   const [formContent, setFormContent] = useState<FormContent>({

@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import classes from "./Header.module.scss";
 
 type Props = {
@@ -5,11 +8,19 @@ type Props = {
 };
 
 const Header: React.FC<Props> = ({ setModalOpen }) => {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log('Current location is ', location);
+  }, [location]);
+
   return (
     <header>
       <div className={classes.left_menu}>
         <div className={classes.left_menu}>
-          <div id={classes.logo} title="to Home">
+          <div id={classes.logo} title="to Home" onClick={() => {navigate("/", { replace: false });}}>
             <div className={classes.logoText}>
               БУЧАЛКА
               <div className={classes.logoText}>УМЦ</div>

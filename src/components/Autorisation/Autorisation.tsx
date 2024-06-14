@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import classNames from "classnames";
 import classes from "./Autorisation.module.scss";
@@ -18,10 +19,19 @@ type Props = {
 }
 
 const Autorisation: React.FC<Props> = ({modalClose}) => {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log('Current location is ', location);
+  }, [location]);
+
   const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     createUser(formContent);
-    modalClose();
+    navigate("/personal-page");
+    // modalClose();
   };
 
   const [formContent, setFormContent] = useState<FormContent>({
