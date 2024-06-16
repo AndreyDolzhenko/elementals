@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
 
-import Header from "../Header";
-import Enter from "../Enter";
+
 import Time from "../ui/Time";
 import Decorates from "../ui/DecorativeElements";
 import MyCarousel from "../ui/MyCarousel";
@@ -20,7 +19,12 @@ import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
 
-const Main: React.FC = observer(() => {
+type Props = {
+  // isModalOpen: boolean,
+  setModalOpen: () => void;
+}
+
+const Main: React.FC<Props> = observer(({setModalOpen}) => {
   const pictures = [
     <img className={classes.pictures} src="./src/assets/images/irina.jpg" />,
     <img className={classes.pictures} src="./src/assets/images/artem.jpg" />,
@@ -41,25 +45,11 @@ const Main: React.FC = observer(() => {
     <span className={classes.student_reviews_item}>Спасибо большое за тренинг!</span>,    
   ];
 
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  // const { fetchAllUsers, users } = usersStore;
-
-  // useEffect(() => {
-
-  //   fetchAllUsers();
-    
-  // }, [fetchAllUsers]);
-
+  
   return (
     <div className={classes.component}>
-      {isModalOpen ? (
-        <Enter modalClose={() => setModalOpen(false)} />
-      ) : (
-        ""
-      )}
       <section className={classes.first_block}>
-        <Header setModalOpen={setModalOpen} />        
+        {/* <Header setModalOpen={setModalOpen} />         */}
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
         </p>

@@ -14,11 +14,7 @@ type FormContent = {
   mail: string;
 };
 
-type Props = {
-  modalClose: () => void;
-}
-
-const Autorisation: React.FC<Props> = ({modalClose}) => {
+const Autorisation: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();

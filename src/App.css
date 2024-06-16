@@ -9,6 +9,9 @@
 
 body {
   font-family: "Montserrat Alternates";
+  background: #f7ede8;
+  display: flex;
+  justify-content: center;
 }
 
 .img {
@@ -60,6 +63,6 @@ span {
   color: #808080;
 }
 
-.media > span{
+.media > span {
   margin: 70px 0 70px 0;
 }
