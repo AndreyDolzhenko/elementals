@@ -14,14 +14,19 @@ type FormContent = {
   mail: string;
 };
 
-const Registration: React.FC = () => {
+type Props = {
+  modalClose: () => void,
+}
+
+const Registration: React.FC<Props> = ({modalClose}) => {
 
   const navigate = useNavigate();
 
   const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     createUser(formContent);
-    navigate("/personal-page");    
+    navigate("/personal-page");  
+    modalClose();  
   };
 
   const [formContent, setFormContent] = useState<FormContent>({

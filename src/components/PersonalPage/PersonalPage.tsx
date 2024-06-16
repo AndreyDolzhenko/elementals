@@ -50,10 +50,10 @@ const PersonalPage: React.FC = observer(() => {
         ""
       )}
       <section className={classes.first_block}>
-        <Header setModalOpen={setModalOpen} />        
+        {/* <Header setModalOpen={setModalOpen} />         */}
         
-        <p className={classes.brand}>Добрый день, {users[0].fio}</p>
-        <p className={classes.brand}>Добрый день, {users.map(el => el.login === "semen" ? "semen" : false)}</p>
+        {/* <p className={classes.brand}>Добрый день, {users[0].fio}</p>
+        <p className={classes.brand}>Добрый день, {users.map(el => el.login === "semen" ? "semen" : false)}</p> */}
         <p className={classes.main_text_second_part}>Выберите программу для развития навыков:</p>
         {/* <ul>{
           users.length !== 0 ? Object.values(users[0]).map(el => <li>{el}</li>) : ""

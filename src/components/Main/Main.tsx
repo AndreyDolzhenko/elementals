@@ -19,12 +19,7 @@ import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
 
-type Props = {
-  // isModalOpen: boolean,
-  setModalOpen: () => void;
-}
-
-const Main: React.FC<Props> = observer(({setModalOpen}) => {
+const Main: React.FC = observer(() => {
   const pictures = [
     <img className={classes.pictures} src="./src/assets/images/irina.jpg" />,
     <img className={classes.pictures} src="./src/assets/images/artem.jpg" />,
@@ -48,8 +43,7 @@ const Main: React.FC<Props> = observer(({setModalOpen}) => {
   
   return (
     <div className={classes.component}>
-      <section className={classes.first_block}>
-        {/* <Header setModalOpen={setModalOpen} />         */}
+      <section className={classes.first_block}>        
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
         </p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import AppRouter from "./components/AppRouter";
 import Header from "./components/Header";
@@ -8,6 +9,7 @@ import "./App.css";
 function App() {
 
   const [isModalOpen, setModalOpen] = useState(false);
+
   
   return (
     <div>
@@ -16,7 +18,7 @@ function App() {
       ) : (
         ""
       )}
-      <Header setModalOpen={setModalOpen}/>
+      <Header modalOpen={() => setModalOpen(true)}/>
       <AppRouter />
       
     </div>

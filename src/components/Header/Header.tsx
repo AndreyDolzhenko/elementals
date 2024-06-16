@@ -1,30 +1,26 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import classes from "./Header.module.scss";
 
-type Props = {  
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+type Props = {
+  modalOpen: () => void,
+}
 
-const Header: React.FC<Props> = ({ setModalOpen }) => {
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log('Current location is ', location);
-  }, [location]);
+const Header: React.FC<Props> = ({modalOpen}) => {
 
   return (
     <header>
       <div className={classes.left_menu}>
         <div className={classes.left_menu}>
-          <div id={classes.logo} title="to Home" onClick={() => {navigate("/", { replace: false });}}>
+          <div id={classes.logo} title="to Home">
+            <Link to={"/"}>
             <div className={classes.logoText}>
               БУЧАЛКА
               <div className={classes.logoText}>УМЦ</div>
             </div>
+            </Link>
           </div>
         </div>
         <ul className={classes.left_menu_block}>
@@ -35,7 +31,7 @@ const Header: React.FC<Props> = ({ setModalOpen }) => {
       </div>
       <div className={classes.headerButtons}>
         <button>Обратная связь</button>
-        <button title="Войти в Обучалку УМЦ" onClick={() => setModalOpen(true)}>
+        <button title="Войти в Обучалку УМЦ" onClick={() => modalOpen()}>
           Войти
         </button>
       </div>

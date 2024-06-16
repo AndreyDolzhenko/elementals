@@ -14,7 +14,11 @@ type FormContent = {
   mail: string;
 };
 
-const Autorisation: React.FC = () => {
+type Props = {
+  modalClose: () => void,
+}
+
+const Autorisation: React.FC<Props> = ({modalClose}) => {
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,7 +31,7 @@ const Autorisation: React.FC = () => {
     e.preventDefault();
     createUser(formContent);
     navigate("/personal-page");
-    // modalClose();
+    modalClose();
   };
 
   const [formContent, setFormContent] = useState<FormContent>({
