@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
+import auth from "../../services/auth";
 import classNames from "classnames";
 import classes from "./Autorisation.module.scss";
 import usersStore from "../../stores/usersStore";
@@ -19,21 +20,10 @@ type Props = {
 }
 
 const Autorisation: React.FC<Props> = ({modalClose}) => {
-
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log('Current location is ', location);
-  }, [location]);
-
-  const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    createUser(formContent);
-    navigate("/personal-page");
-    modalClose();
-  };
-
+  const [typeInput, setTypeInput] = useState("password"); // тип текста в password
+  const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
+  const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
+  
   const [formContent, setFormContent] = useState<FormContent>({
     login: "",
     password: "",
@@ -41,12 +31,18 @@ const Autorisation: React.FC<Props> = ({modalClose}) => {
     mail: "",
   });
 
-  const { createUser, users } = usersStore; 
-  
-  const [typeInput, setTypeInput] = useState("password"); // тип текста в password
-  const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
-  const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
+  const {signIn} = auth;
 
+  const navigate = useNavigate();
+
+  const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();    
+    console.log(await signIn({login: formContent.login, password: formContent.password}));
+    navigate("/personal-page");
+    modalClose();
+  };
+
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormContent((prev) => ({
@@ -106,7 +102,7 @@ const Autorisation: React.FC<Props> = ({modalClose}) => {
 {/* / кнопка "Войти" */}
         <button
           className={classNames(classes.autoInput, classes.come_in)}
-          onClick={(e) => handleSignUp(e)}
+          onClick={(e) => handleSignIn(e)}
         >
           Войти
         </button>

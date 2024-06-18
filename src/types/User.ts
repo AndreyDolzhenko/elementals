@@ -11,3 +11,8 @@ export type CreateUser = {
     fio: string,
     mail: string,    
 };
+
+export type AuthUser = {
+    login: string,
+    password: string,
+}

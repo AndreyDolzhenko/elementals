@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./Header.module.scss";
 
 type Props = {
-  modalOpen: () => void,
-}
+  modalOpen: () => void;
+};
 
-
-const Header: React.FC<Props> = ({modalOpen}) => {
-
+const Header: React.FC<Props> = ({ modalOpen }) => {
   return (
     <header>
       <div className={classes.left_menu}>
         <div className={classes.left_menu}>
           <div id={classes.logo} title="to Home">
             <Link to={"/"}>
-            <div className={classes.logoText}>
-              БУЧАЛКА
-              <div className={classes.logoText}>УМЦ</div>
-            </div>
+              <div className={classes.logoText}>
+                БУЧАЛКА
+                <div className={classes.logoText}>УМЦ</div>
+              </div>
             </Link>
           </div>
         </div>

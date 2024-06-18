@@ -107,6 +107,7 @@ const Main: React.FC = observer(() => {
       </section>
       <section className={classes.footer}>      
       <div className={classes.footer_content}>© ОФИСМАГ, 2024</div>
+      <img src="../../assets/images/Лого УМЦ 2021.png" alt="logoUMC" />
       </section>
     </div>
   );
