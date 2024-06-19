@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
 
@@ -18,6 +19,7 @@ import Quotes from "../../assets/icons/quotes.svg?react";
 import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
+import logoUMC from "../../assets/images/logoUMC.png";
 
 const Main: React.FC = observer(() => {
   const pictures = [
@@ -40,6 +42,21 @@ const Main: React.FC = observer(() => {
     <span className={classes.student_reviews_item}>Спасибо большое за тренинг!</span>,    
   ];
 
+  const [appsShow, setAppsShow] = useState({});
+
+  const navigate = useNavigate();
+
+  const applications = {    
+    "Угадай СТМ": "/guess-stm",
+    "Симулятор переговоров с Клиентами": "/scc",
+  };
+  
+
+  const choiseApp = (apps: object) => {
+    console.log(Object.entries(apps));
+    return Object.entries(apps).map(el => <li onClick={() => navigate(el[1])}>{el[0]}</li>)
+    
+  }
   
   return (
     <div className={classes.component}>
@@ -51,7 +68,9 @@ const Main: React.FC = observer(() => {
           с программами корпоративного университета <br></br>
           <span className={classes.brand}>ОФИСМАГ</span>
         </p>
-        <button>ПРОГРАММЫ</button>
+        <button onClick={() => setAppsShow(applications)}>ПРОГРАММЫ</button>
+        <div className={classes.windowApps}><ul>{choiseApp(appsShow)}</ul></div>
+        
         <Time />
         <MyCarousel content={pictures} />
         <div className={classes.media}>
@@ -106,8 +125,10 @@ const Main: React.FC = observer(() => {
         <MyCarousel content={texts} />
       </section>
       <section className={classes.footer}>      
-      <div className={classes.footer_content}>© ОФИСМАГ, 2024</div>
-      <img src="../../assets/images/Лого УМЦ 2021.png" alt="logoUMC" />
+      <div className={classes.footer_content}>
+        <img style={{width: "10%"}} src={logoUMC} alt="logoUMC" />
+        <div style={{float: "right"}}>© ОФИСМАГ, 2024</div>
+        </div>            
       </section>
     </div>
   );

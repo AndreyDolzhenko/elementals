@@ -54,7 +54,7 @@
   margin: 0 auto;
   padding: 5rem;
   text-align: center;
-  background: #FFFAFA;
+  background: #fffafa;
 }
 
 .secondPageTitle {
@@ -162,13 +162,35 @@
 
 .footer {
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   margin: 5px 0 0 0;
   color: rgb(205, 70, 49);
-  background: #FFFAFA;
+  background: #fffafa;
   .footer_content {
     width: 1160px;
-    margin: 20px;
+    margin: 10px;
     font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+}
+
+.windowApps {
+  li {
+    list-style-type: circle;
+  }
+
+  li:hover {
+    cursor: pointer;
+    color: #808080;
+  }
+  
+  background: aliceblue;
+  z-index: 2;
+  position: fixed;
+  top: 200px;
+  right: 300px;
+  padding: 5px 5px 5px 30px;
+  border-radius: 10px;
 }

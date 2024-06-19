@@ -48,7 +48,7 @@ li {
   font-weight: 700;
   line-height: 25.6px;
   text-align: left;
-  /* list-style-type: none; */
+  list-style-type: none;
 }
 
 span {
