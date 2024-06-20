@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
+import { useAuthContext } from "../../contexts/authContext";
 import auth from "../../services/auth";
 import classNames from "classnames";
 import classes from "./Autorisation.module.scss";
@@ -16,14 +17,14 @@ type FormContent = {
 };
 
 type Props = {
-  modalClose: () => void,
-}
+  modalClose: () => void;
+};
 
-const Autorisation: React.FC<Props> = ({modalClose}) => {
+const Autorisation: React.FC<Props> = ({ modalClose }) => {
   const [typeInput, setTypeInput] = useState("password"); // тип текста в password
   const [showPass, setShowPass] = useState("block"); // отслеживаем открытый глаз
   const [closePass, setClosePass] = useState("none"); // отслеживаем закрытый глаз
-  
+
   const [formContent, setFormContent] = useState<FormContent>({
     login: "",
     password: "",
@@ -31,18 +32,29 @@ const Autorisation: React.FC<Props> = ({modalClose}) => {
     mail: "",
   });
 
-  const {signIn} = auth;
+  const { loginStatus, setLoginStatus, user, setUser } = useAuthContext();
+
+  const { signIn } = auth;
 
   const navigate = useNavigate();
 
   const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();    
-    console.log(await signIn({login: formContent.login, password: formContent.password}));
+    e.preventDefault();
+    const response = await signIn({
+      login: formContent.login,
+      password: formContent.password,
+    });
+    if (!response.auth) {
+      setLoginStatus(false);
+    } else {
+      localStorage.setItem("token", response.token);
+      setLoginStatus(true);
+      setUser(response.user);
+    }
     navigate("/personal-page");
     modalClose();
   };
 
-  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormContent((prev) => ({
@@ -60,7 +72,7 @@ const Autorisation: React.FC<Props> = ({modalClose}) => {
   return (
     <>
       <form className={classes.autoForm}>
-{/* / инпут для ввода логина */}
+        {/* / инпут для ввода логина */}
         <input
           className={classes.autoInput}
           type="text"
@@ -70,7 +82,7 @@ const Autorisation: React.FC<Props> = ({modalClose}) => {
           onChange={(e) => handleChange(e)}
           onKeyDown={(e) => (e.key == "Tab" ? console.log(formContent) : "")}
         />
-{/* / блок с инпутом для ввода пароля, компонентами для скрытия и предъявления пароля */}
+        {/* / блок с инпутом для ввода пароля, компонентами для скрытия и предъявления пароля */}
         <div
           className={classNames(classes.autoInput)}
           style={{ display: "flex" }}
@@ -99,7 +111,7 @@ const Autorisation: React.FC<Props> = ({modalClose}) => {
             <ClosePassword />
           </div>
         </div>
-{/* / кнопка "Войти" */}
+        {/* / кнопка "Войти" */}
         <button
           className={classNames(classes.autoInput, classes.come_in)}
           onClick={(e) => handleSignIn(e)}

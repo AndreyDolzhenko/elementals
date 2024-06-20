@@ -1,18 +1,24 @@
 export type User = {
-    id: number,
-    login: string,
-    fio: string,
-    mail: string,    
+  id: number;
+  login: string;
+  fio: string;
+  mail: string;
 };
 
-export type CreateUser = {    
-    login: string,
-    password: string,
-    fio: string,
-    mail: string,    
+export type CreateUser = {
+  login: string;
+  password: string;
+  fio: string;
+  mail: string;
 };
 
 export type AuthUser = {
-    login: string,
-    password: string,
-}
+  login: string;
+  password: string;
+};
+
+export type SignIn = {
+  auth: boolean;
+  token: string;
+  user: User;
+};

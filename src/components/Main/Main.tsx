@@ -59,7 +59,7 @@ const Main: React.FC = observer(() => {
   }
   
   return (
-    <div className={classes.component}>
+    <div className={classes.component} onClick={() => Object.values(appsShow).length !== 0 ? setAppsShow({}) : false}>
       <section className={classes.first_block}>        
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
@@ -68,7 +68,7 @@ const Main: React.FC = observer(() => {
           с программами корпоративного университета <br></br>
           <span className={classes.brand}>ОФИСМАГ</span>
         </p>
-        <button onClick={() => setAppsShow(applications)}>ПРОГРАММЫ</button>
+        <button onClick={() => Object.values(appsShow).length === 0 ? setAppsShow(applications) : setAppsShow({})}>ПРОГРАММЫ</button>
         <div className={classes.windowApps}><ul>{choiseApp(appsShow)}</ul></div>
         
         <Time />

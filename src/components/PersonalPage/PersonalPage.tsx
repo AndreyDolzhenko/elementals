@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
-import { toJS } from "mobx";
+import { toJS, values } from "mobx";
 
 import Header from "../Header";
 import Enter from "../Enter";
 import Time from "../ui/Time";
 import MyCarousel from "../ui/MyCarousel";
 import usersStore from "../../stores/usersStore";
+import { useAuthContext } from "../../contexts/authContext";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
@@ -34,6 +35,10 @@ const PersonalPage: React.FC = observer(() => {
 
   const [isModalOpen, setModalOpen] = useState(false);
 
+  const { user, loginStatus } = useAuthContext();
+
+  // const object = JSON.parse(user);
+
   const { fetchAllUsers, users } = usersStore;
 
   useEffect(() => {
@@ -52,14 +57,14 @@ const PersonalPage: React.FC = observer(() => {
       <section className={classes.first_block}>
         {/* <Header setModalOpen={setModalOpen} />         */}
         
-        <p className={classes.brand}>Добрый день, {users[0].fio}</p>
-        <p className={classes.brand}>Добрый день, {users.map(el => el.login === "semen" ? "semen" : false)}</p>
+        <p className={classes.brand}>Добрый день, {user.fio}</p>
+        {/* <p className={classes.brand}>Добрый день, {users.map(el => el.login === "semen" ? "semen" : false)}</p> */}
         <p className={classes.main_text_second_part}>Выберите программу для развития навыков:</p>
         {/* <ul>{
           users.length !== 0 ? Object.values(users[0]).map(el => <li>{el}</li>) : ""
           }</ul> */}
 
-        <button>ПРОГРАММЫ</button>
+        <button onClick={() => console.log(loginStatus, user.fio)}>ПРОГРАММЫ</button>
         <Time />
         
         <div className={classes.media}>
