@@ -1,0 +1,19 @@
+.windowApps {
+    li {
+      list-style-type: circle;
+    }
+  
+    li:hover {
+      cursor: pointer;
+      color: #808080;
+    }
+    
+    background: lightgray;
+    z-index: 2;
+    position: fixed;
+    top: 200px;
+    right: 300px;
+    padding: 5px 5px 5px 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+  }

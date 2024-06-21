@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { observer } from "mobx-react";
-import { toJS } from "mobx";
 
-
+import ChoiseApp from "../ChoiseApp";
 import Time from "../ui/Time";
 import Decorates from "../ui/DecorativeElements";
 import MyCarousel from "../ui/MyCarousel";
-import usersStore from "../../stores/usersStore";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
@@ -20,6 +17,7 @@ import Spring from "../../assets/icons/spring.svg?react";
 import Blot from "../../assets/icons/blot.svg?react";
 import classes from "./Main.module.scss";
 import logoUMC from "../../assets/images/logoUMC.png";
+
 
 const Main: React.FC = observer(() => {
   const pictures = [
@@ -42,24 +40,10 @@ const Main: React.FC = observer(() => {
     <span className={classes.student_reviews_item}>Спасибо большое за тренинг!</span>,    
   ];
 
-  const [appsShow, setAppsShow] = useState({});
-
-  const navigate = useNavigate();
-
-  const applications = {    
-    "Угадай СТМ": "/guess-stm",
-    "Симулятор переговоров с Клиентами": "/scc",
-  };
-  
-
-  const choiseApp = (apps: object) => {
-    console.log(Object.entries(apps));
-    return Object.entries(apps).map(el => <li onClick={() => navigate(el[1])}>{el[0]}</li>)
-    
-  }
+  const [display, setDisplay] = useState("none");
   
   return (
-    <div className={classes.component} onClick={() => Object.values(appsShow).length !== 0 ? setAppsShow({}) : false}>
+    <div className={classes.component} onClick={() => display !== "none" ? setDisplay("none") : false}>
       <section className={classes.first_block}>        
         <p className={classes.main_text}>
           Твой фактор<br></br><span>Роста</span>
@@ -68,9 +52,7 @@ const Main: React.FC = observer(() => {
           с программами корпоративного университета <br></br>
           <span className={classes.brand}>ОФИСМАГ</span>
         </p>
-        <button onClick={() => Object.values(appsShow).length === 0 ? setAppsShow(applications) : setAppsShow({})}>ПРОГРАММЫ</button>
-        <div className={classes.windowApps}><ul>{choiseApp(appsShow)}</ul></div>
-        
+        <ChoiseApp display={display} changeDisplay={() => setDisplay("block")}/>
         <Time />
         <MyCarousel content={pictures} />
         <div className={classes.media}>
