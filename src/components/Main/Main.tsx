@@ -21,13 +21,15 @@ import logoUMC from "../../assets/images/logoUMC.png";
 
 const Main: React.FC = observer(() => {
   const pictures = [
-    <img className={classes.pictures} src="./src/assets/images/irina.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/artem.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/chech.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/damir.jpg" />,        
-    <img className={classes.pictures} src="./src/assets/images/katya.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/misharin.jpg" />,    
-    <img className={classes.pictures} src="./src/assets/images/round.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_3.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_4.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_5.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_6.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_8.jpg" />,    
+    <img className={classes.pictures} src="./src/assets/images/foto_9.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_10.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_11.jpg" />,    
+    <img className={classes.pictures} src="./src/assets/images/foto_12.jpg" />,
   ];
   const texts = [
     <span className={classes.student_reviews_item}>Тренинг был интересный и эксперты доступно излагали материал.</span>, 
