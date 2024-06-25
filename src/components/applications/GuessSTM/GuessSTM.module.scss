@@ -6,9 +6,27 @@
 .show_questions {
   width: 1160px;
   height: 472px;
-  float: left;  
+  float: left;
 }
 .block_time {
   display: flex;
   justify-content: space-around;
+}
+
+.photo_STM {
+  width: 30%;
+  height: 200px;
+  float: left;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.description_STM {
+  width: 60%;
+  float: right;
+  margin: 20px;
+  cursor: pointer;
 }
