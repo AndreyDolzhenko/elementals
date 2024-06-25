@@ -39,17 +39,17 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
   const navigate = useNavigate();
 
   const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+    e.preventDefault();    
     const response = await signIn({
       login: formContent.login,
       password: formContent.password,
-    });
-    if (!response.auth) {
+    });        
+    if (!response.auth) {            
       setLoginStatus(false);
-    } else {
+    } else {            
       localStorage.setItem("token", response.token);
       setLoginStatus(true);
-      setUser(response.user);
+      setUser(response.user);      
     }
     navigate("/personal-page");
     modalClose();

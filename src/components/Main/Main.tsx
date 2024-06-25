@@ -20,11 +20,11 @@ import logoUMC from "../../assets/images/logoUMC.png";
 
 
 const Main: React.FC = observer(() => {
-  const pictures = [
-    <img className={classes.pictures} src="./src/assets/images/foto_3.jpg" />,
-    <img className={classes.pictures} src="./src/assets/images/foto_4.jpg" />,
+  const pictures = [    
     <img className={classes.pictures} src="./src/assets/images/foto_5.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_4.jpg" />,    
     <img className={classes.pictures} src="./src/assets/images/foto_6.jpg" />,
+    <img className={classes.pictures} src="./src/assets/images/foto_7.jpg" />,
     <img className={classes.pictures} src="./src/assets/images/foto_8.jpg" />,    
     <img className={classes.pictures} src="./src/assets/images/foto_9.jpg" />,
     <img className={classes.pictures} src="./src/assets/images/foto_10.jpg" />,

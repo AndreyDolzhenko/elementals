@@ -9,7 +9,7 @@ type AuthContextType = {
   loginStatus: boolean;
   setLoginStatus: React.Dispatch<React.SetStateAction<boolean>>;
   user: User;
-  setUser: React.Dispatch<React.SetStateAction<object>>;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 };
 
 const AuthContext = createContext<AuthContextType>({
@@ -26,7 +26,14 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider: React.FC<AuthProviderType> = ({ children }) => {
   const [loginStatus, setLoginStatus] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User>(
+    {
+      id: 1,
+      login: "",
+      fio: "",
+      mail: "",
+    }
+  );
 
   return (
     <AuthContext.Provider value={{ loginStatus, setLoginStatus, user, setUser }}>

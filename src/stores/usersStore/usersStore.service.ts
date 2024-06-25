@@ -7,7 +7,7 @@ class UsersService {
     };
 
     createUser = async (body: CreateUser): Promise<void> => {
-        return axiosApi.post("/users", body);
+        return axiosApi.post("/users/auth/registration", body);
     };
 };
 
