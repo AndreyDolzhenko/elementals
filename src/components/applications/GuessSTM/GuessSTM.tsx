@@ -111,58 +111,66 @@ const arrProductSTM = [
 ];
 
 // let copyArrProductSTM = [...arrProductSTM];
+
 let nextItem = 0;
 let userChoise: object[] = [];
-let correct = 0;
-let uncorrecy = 0;
+
+let newArrProductSTM = [...arrProductSTM];
 
 const GuessSTM: React.FC = () => {
-  const [newArrProductSTM, setNewArrProductSTM] = useState(arrProductSTM);
   const [showSTM, setShowSTM] = useState([
     Object.keys(arrProductSTM[0]),
     Object.values(arrProductSTM[0]),
   ]);
 
+  const [correct, setCorrect] = useState(0);
+  const [uncorrect, setUnCorrect] = useState(0);
+
   const tableToExcel = (one: string, two: string, three: string) => {
     alert("Here will be pass on to Excel" + one + two + three);
   };
 
+  useEffect(() => {
+    return () => {
+      setCorrect(userChoise.reduce((accum, el) => accum + el[4], 0));
+      setUnCorrect(userChoise.reduce((accum, el) => accum + el[5], 0));
+    };
+  }, []);
+
   function selectionOfBrandsAndStatements(e: string) {
     nextItem = Math.floor(0 + Math.random() * newArrProductSTM.length); // Индекс из диапозона элементов copyArrProductSTM.
     // console.log(Object.values(newArrProductSTM));
-    console.log(e.target.textContent);
+    // console.log(e.target.textContent);
     // let indexStatement=Math.floor(0 + Math.random() * arrProductSTM.length);// Индекс из диапозона элементов arrProductSTM.
     // let indexRandomness=Math.floor(0 + Math.random() * 2);// Индекс случайного числа (предназначен для увеличения случайного выбора).
 
-    setShowSTM([
-      Object.keys(
-        newArrProductSTM[nextItem === 0 ? (nextItem += 1) : nextItem]
-      ),
-      Object.values(
-        newArrProductSTM[nextItem === 0 ? (nextItem += 1) : nextItem]
-      ),
-    ]);
+    
+      setShowSTM([
+        Object.keys(
+          newArrProductSTM[nextItem === 0 ? (nextItem += 1) : nextItem]
+        ),
+        Object.values(
+          newArrProductSTM[nextItem === 0 ? (nextItem += 1) : nextItem]
+        ),
+      ]);   
+      
 
-    userChoise.push([
-      Object.values(showSTM[0]),        
-      Object.values(e.target.textContent),
-      Object.values(showSTM[1]),
-      e.target.textContent == showSTM[1] ? "Верно" : "Неверно",
-      e.target.textContent == showSTM[1] ? 1 : 0,
-      e.target.textContent != showSTM[1] ? 1 : 0,
-    ]);
-
-    userChoise.map(el => correct += el[4]);
-    console.log("Правильный ответ - " + correct);
-
-    // alert("Выбор - " + e.target.textContent + "Правильный ответ - " + showSTM[1])
-
-    newArrProductSTM.splice(nextItem === 0 ? (nextItem += 1) : nextItem, 1);
-    if (newArrProductSTM.length == 1) {
-      return alert("Вопросы закончились!");
-    } else {
-      setNewArrProductSTM(newArrProductSTM);
+    if (newArrProductSTM.length < 26) {
+      userChoise.push([
+        Object.values(showSTM[0]),
+        Object.values(e.target.textContent),
+        Object.values(showSTM[1]),
+        e.target.textContent == showSTM[1] ? "Верно" : "Неверно",
+        e.target.textContent == showSTM[1] ? 1 : 0,
+        e.target.textContent != showSTM[1] ? 1 : 0,
+      ]);
     }
+    newArrProductSTM.splice(nextItem, 1);
+    console.log("newArrProductSTM.length - " + newArrProductSTM.length);
+    console.log("arrProductSTM - " + Object.keys(arrProductSTM[nextItem]));
+    console.log(newArrProductSTM);
+
+    
   }
 
   return (
@@ -172,12 +180,12 @@ const GuessSTM: React.FC = () => {
           <div className={classes.block_time}>
             <span
               style={{ cursor: "pointer" }}
-              onClick={() =>
-                tableToExcel("table", "Результаты тестирования", "")
-              }
+              onClick={() => alert("Вывод результатов в Excel")}
             >
               Экспорт в EXCEL
             </span>
+            <span>Верно: {correct}</span>
+            <span>Неверно: {uncorrect}</span>
             <span id="userName"></span>{" "}
             <input id="userNameValue" type="text" placeholder="ФИО"></input>
             <span className={classes.label_time_test}>
@@ -198,7 +206,7 @@ const GuessSTM: React.FC = () => {
             ></div>
           </div>
         </div>
-        
+
         <div className={classes.show_questions}>
           <div className={classes.photo_STM}>
             <img
@@ -210,7 +218,13 @@ const GuessSTM: React.FC = () => {
               Выбор СТМ
             </button>
           </div>
-          <div className={classes.description_STM} onClick={(e) => selectionOfBrandsAndStatements(e)}>
+          <div
+            className={classes.description_STM}
+            onClick={(e) => newArrProductSTM.length > 1 ? selectionOfBrandsAndStatements(e) : setShowSTM([
+              Object.keys(arrProductSTM[0]),
+              Object.values(arrProductSTM[0]),
+            ])}
+          >
             {nextItem % 2 === 0
               ? Object.values(showSTM[1])
               : Object.values(
@@ -228,7 +242,7 @@ const GuessSTM: React.FC = () => {
                   arrProductSTM[nextItem > 2 ? nextItem - 1 : nextItem + 1]
                 )}
           </div>
-          
+
           <div>Результаты:</div>
           <div>
             {userChoise.map((el) => (

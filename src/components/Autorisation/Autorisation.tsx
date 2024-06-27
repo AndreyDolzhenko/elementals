@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../contexts/authContext";
@@ -32,6 +32,11 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
     mail: "",
   });
 
+  const [validateField, setvalidateField] = useState({
+    status: 500, 
+    errorMessage: "",
+  });
+
   const { loginStatus, setLoginStatus, user, setUser } = useAuthContext();
 
   const { signIn } = auth;
@@ -39,21 +44,39 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
   const navigate = useNavigate();
 
   const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();    
-    const response = await signIn({
+    e.preventDefault();
+    await signIn({
       login: formContent.login,
       password: formContent.password,
-    });        
-    if (!response.auth) {            
-      setLoginStatus(false);
-    } else {            
-      localStorage.setItem("token", response.token);
-      setLoginStatus(true);
-      setUser(response.user);      
-    }
-    navigate("/personal-page");
-    modalClose();
+    })
+      .then((result) => {
+        if (!result.auth) {
+          setLoginStatus(false);
+        } else {
+          localStorage.setItem("token", result.token);
+          setLoginStatus(true);
+          setUser(result.user);
+        }
+        navigate("/personal-page");
+        modalClose();
+      })
+      .catch((e) => {
+        setvalidateField({
+          status: e.response.status,
+          errorMessage: e.response.data.message,
+        });        
+      });      
   };
+// Убираем красную заливку, если стерли логин или пароль в форме
+  useEffect(() => {
+    
+    return () => {
+      setvalidateField({
+        status: 500, 
+        errorMessage: "",
+      });
+    };
+  }, [formContent.password === "", formContent.login === ""]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -73,7 +96,15 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
     <>
       <form className={classes.autoForm}>
         {/* / инпут для ввода логина */}
+        <p style={{
+          fontSize: "8px",
+          color: "red",
+          }}>{validateField.status === 404 ? validateField.errorMessage : ""}</p>
         <input
+          style={{
+            borderColor: validateField.status === 404 ? "red" : "black",
+            marginTop: validateField.status === 404 ? "0px" : "12px",
+          }}
           className={classes.autoInput}
           type="text"
           name="login"
@@ -83,11 +114,19 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
           onKeyDown={(e) => (e.key == "Tab" ? console.log(formContent) : "")}
         />
         {/* / блок с инпутом для ввода пароля, компонентами для скрытия и предъявления пароля */}
+        <p style={{
+          fontSize: "8px",
+          color: "red",
+          }}>{validateField.status === 400 ? validateField.errorMessage : ""}</p>
         <div
-          className={classNames(classes.autoInput)}
-          style={{ display: "flex" }}
-        >
-          <input
+          className={classNames(classes.autoInput)}          
+          style={{
+            borderColor: validateField.status === 400 ? "red" : "black",
+            marginTop: validateField.status === 400 ? "0px" : "12px",
+            display: "flex",
+          }}
+        >          
+          <input            
             className={classNames(classes.password)}
             type={typeInput}
             name="password"
@@ -114,7 +153,7 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
         {/* / кнопка "Войти" */}
         <button
           className={classNames(classes.autoInput, classes.come_in)}
-          onClick={(e) => handleSignIn(e)}
+          onClick={(e) => (handleSignIn(e))}
         >
           Войти
         </button>
