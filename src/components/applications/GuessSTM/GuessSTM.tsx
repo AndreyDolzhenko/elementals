@@ -31,7 +31,7 @@ import Umc from "../../../assets/images/logoUMC.png";
 
 const arrProductSTM = [
   {
-    [Umc]: `Выбери правильно определение бренда на картинке слева. Для начала нажми кнопку "Выбор СТМ"!`,
+    [Umc]: `Выбери правильное определение бренда на картинке слева. Для начала нажми кнопку "Выбор СТМ"!`,
   },
   {
     [Ofismag]: `– качественные офисные принадлежности: бумага для оргтехники; блокноты; папки; ручки; хозтовары и упаковочные материалы; чертежные принадлежности; канцелярские мелочи и многое другое. Была создана в 2009 году и стала отражением тенденций рынка товаров для офиса.`,
@@ -135,16 +135,12 @@ const GuessSTM: React.FC = () => {
       setCorrect(userChoise.reduce((accum, el) => accum + el[4], 0));
       setUnCorrect(userChoise.reduce((accum, el) => accum + el[5], 0));
     };
-  }, []);
-
+  }, [userChoise.length]);
+  ///////////////
   function selectionOfBrandsAndStatements(e: string) {
-    nextItem = Math.floor(0 + Math.random() * newArrProductSTM.length); // Индекс из диапозона элементов copyArrProductSTM.
-    // console.log(Object.values(newArrProductSTM));
-    // console.log(e.target.textContent);
-    // let indexStatement=Math.floor(0 + Math.random() * arrProductSTM.length);// Индекс из диапозона элементов arrProductSTM.
-    // let indexRandomness=Math.floor(0 + Math.random() * 2);// Индекс случайного числа (предназначен для увеличения случайного выбора).
+    nextItem = Math.floor(0 + Math.random() * newArrProductSTM.length);
 
-    
+    if (newArrProductSTM.length > 1) {
       setShowSTM([
         Object.keys(
           newArrProductSTM[nextItem === 0 ? (nextItem += 1) : nextItem]
@@ -152,8 +148,17 @@ const GuessSTM: React.FC = () => {
         Object.values(
           newArrProductSTM[nextItem === 0 ? (nextItem += 1) : nextItem]
         ),
-      ]);   
-      
+      ]);
+    }
+    if (newArrProductSTM.length === 1) {
+      setShowSTM([
+        Object.keys(newArrProductSTM[(nextItem = 0)]),
+        Object.values(newArrProductSTM[(nextItem = 0)]),
+      ]);
+    }
+    if (newArrProductSTM.length === 0) {
+      alert("Вопросы закончились!");
+    }
 
     if (newArrProductSTM.length < 26) {
       userChoise.push([
@@ -166,12 +171,8 @@ const GuessSTM: React.FC = () => {
       ]);
     }
     newArrProductSTM.splice(nextItem, 1);
-    console.log("newArrProductSTM.length - " + newArrProductSTM.length);
-    console.log("arrProductSTM - " + Object.keys(arrProductSTM[nextItem]));
-    console.log(newArrProductSTM);
-
-    
   }
+  /////////////////////
 
   return (
     <>
@@ -214,33 +215,54 @@ const GuessSTM: React.FC = () => {
               src={Object.values(showSTM[0])}
               alt=""
             />
-            <button onClick={(e) => selectionOfBrandsAndStatements(e)}>
+            <button
+              onClick={(e) =>
+                nextItem === 0 ? selectionOfBrandsAndStatements(e) : false
+              }
+            >
               Выбор СТМ
             </button>
           </div>
           <div
             className={classes.description_STM}
-            onClick={(e) => newArrProductSTM.length > 1 ? selectionOfBrandsAndStatements(e) : setShowSTM([
-              Object.keys(arrProductSTM[0]),
-              Object.values(arrProductSTM[0]),
-            ])}
+            onClick={(e) =>
+              newArrProductSTM.length > 0
+                ? selectionOfBrandsAndStatements(e)
+                : setShowSTM([
+                    Object.keys(arrProductSTM[0]),
+                    Object.values(arrProductSTM[0]),
+                  ])
+            }
           >
-            {nextItem % 2 === 0
-              ? Object.values(showSTM[1])
-              : Object.values(
-                  arrProductSTM[nextItem > 2 ? nextItem - 1 : nextItem + 1]
-                )}
+            {
+              // showResult[0]
+              nextItem % 2 === 0
+                ? Object.values(showSTM[1])
+                : Object.values(
+                    arrProductSTM[nextItem > 2 ? nextItem - 1 : nextItem + 1]
+                  )
+            }
           </div>
           <div
-            style={{ display: nextItem === 0 ? "none" : "block" }}
+            style={{ opacity: nextItem === 0 ? "0" : "1" }}
             className={classes.description_STM}
-            onClick={(e) => selectionOfBrandsAndStatements(e)}
+            onClick={(e) =>
+              newArrProductSTM.length > 0
+                ? selectionOfBrandsAndStatements(e)
+                : setShowSTM([
+                    Object.keys(arrProductSTM[0]),
+                    Object.values(arrProductSTM[0]),
+                  ])
+            }
           >
-            {nextItem % 2 === 1
-              ? Object.values(showSTM[1])
-              : Object.values(
-                  arrProductSTM[nextItem > 2 ? nextItem - 1 : nextItem + 1]
-                )}
+            {
+              // showResult[1]
+              nextItem % 2 === 1
+                ? Object.values(showSTM[1])
+                : Object.values(
+                    arrProductSTM[nextItem > 2 ? nextItem - 1 : nextItem + 1]
+                  )
+            }
           </div>
 
           <div>Результаты:</div>
