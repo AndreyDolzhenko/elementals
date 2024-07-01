@@ -57,7 +57,7 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
           setLoginStatus(true);
           setUser(result.user);
         }
-        navigate("/personal-page");
+        navigate(user.login === "Admin" ? "/admin" : "/personal-page");
         modalClose();
       })
       .catch((e) => {

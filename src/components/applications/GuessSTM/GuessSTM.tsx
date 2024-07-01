@@ -110,8 +110,6 @@ const arrProductSTM = [
   },
 ];
 
-// let copyArrProductSTM = [...arrProductSTM];
-
 let nextItem = 0;
 let userChoise: object[] = [];
 
