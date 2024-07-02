@@ -111,7 +111,7 @@ const arrProductSTM = [
 ];
 
 let nextItem = 0;
-let userChoise: object[] = [];
+let userChoise: any[] = [];
 
 let newArrProductSTM = [...arrProductSTM];
 
@@ -123,19 +123,34 @@ const GuessSTM: React.FC = () => {
 
   const [correct, setCorrect] = useState(0);
   const [uncorrect, setUnCorrect] = useState(0);
+  const [button, setButton] = useState("");
 
   const tableToExcel = (one: string, two: string, three: string) => {
     alert("Here will be pass on to Excel" + one + two + three);
   };
 
   useEffect(() => {
+    newArrProductSTM.length === 0
+      ? setButton("Отправка результатов")
+      : setButton("Выбор СТМ");
     return () => {
       setCorrect(userChoise.reduce((accum, el) => accum + el[4], 0));
       setUnCorrect(userChoise.reduce((accum, el) => accum + el[5], 0));
     };
   }, [userChoise.length]);
+
+  const startCondition = () => {
+    console.log("Верных ответов - " + correct + "   " + "НЕ верных ответов - " + uncorrect);
+    nextItem = 0;
+    userChoise = [];
+    newArrProductSTM = [...arrProductSTM];
+    setButton("Выбор СТМ");
+  };
+
   ///////////////
-  function selectionOfBrandsAndStatements(e: string) {
+  function selectionOfBrandsAndStatements(
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
+  ) {
     nextItem = Math.floor(0 + Math.random() * newArrProductSTM.length);
 
     if (newArrProductSTM.length > 1) {
@@ -159,13 +174,14 @@ const GuessSTM: React.FC = () => {
     }
 
     if (newArrProductSTM.length < 26) {
+      const target = e.target as HTMLDivElement;
       userChoise.push([
         Object.values(showSTM[0]),
-        Object.values(e.target.textContent),
+        Object.values(target.textContent as string),
         Object.values(showSTM[1]),
-        e.target.textContent == showSTM[1] ? "Верно" : "Неверно",
-        e.target.textContent == showSTM[1] ? 1 : 0,
-        e.target.textContent != showSTM[1] ? 1 : 0,
+        target.textContent == showSTM[1][0] ? "Верно" : "Неверно",
+        target.textContent == showSTM[1][0] ? 1 : 0,
+        target.textContent != showSTM[1][0] ? 1 : 0,
       ]);
     }
     newArrProductSTM.splice(nextItem, 1);
@@ -208,29 +224,34 @@ const GuessSTM: React.FC = () => {
 
         <div className={classes.show_questions}>
           <div className={classes.photo_STM}>
-            <img
-              style={{ width: "100%" }}
-              src={Object.values(showSTM[0])}
-              alt=""
-            />
+            <img style={{ width: "100%" }} src={showSTM[0][0]} alt="" />
             <button
-              onClick={(e) =>
-                nextItem === 0 ? selectionOfBrandsAndStatements(e) : false
-              }
+              style={{
+                display:
+                  newArrProductSTM.length === 0 || nextItem === 0
+                    ? "block"
+                    : "none",
+              }}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                nextItem === 0 && newArrProductSTM.length !== 0
+                  ? selectionOfBrandsAndStatements(e)
+                  : startCondition();
+              }}
             >
-              Выбор СТМ
+              {button}
             </button>
           </div>
           <div
             className={classes.description_STM}
-            onClick={(e) =>
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => {
               newArrProductSTM.length > 0
                 ? selectionOfBrandsAndStatements(e)
                 : setShowSTM([
                     Object.keys(arrProductSTM[0]),
                     Object.values(arrProductSTM[0]),
-                  ])
-            }
+                  ]);
+              // console.log(userChoise);
+            }}
           >
             {
               // showResult[0]
