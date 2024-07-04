@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import classes from "./GuessSTM.module.scss";
+import { useAuthContext } from "../../../contexts/authContext";
 import DecorativeElements from "../../ui/DecorativeElements";
 import Pifagor from "../../../assets/images/logoSTM/Pifagor.jpg";
 import Younland from "../../../assets/images/logoSTM/Younland.jpg";
@@ -116,6 +117,8 @@ let userChoise: any[] = [];
 let newArrProductSTM = [...arrProductSTM];
 
 const GuessSTM: React.FC = () => {
+  const { user, loginStatus } = useAuthContext();
+
   const [showSTM, setShowSTM] = useState([
     Object.keys(arrProductSTM[0]),
     Object.values(arrProductSTM[0]),
@@ -201,8 +204,8 @@ const GuessSTM: React.FC = () => {
             </span>
             <span>Верно: {correct}</span>
             <span>Неверно: {uncorrect}</span>
-            <span id="userName"></span>{" "}
-            <input id="userNameValue" type="text" placeholder="ФИО"></input>
+            <span id="userName">{user.id}. {user.fio}</span>
+            {/* <input id="userNameValue" type="text" placeholder="ФИО"></input> */}
             <span className={classes.label_time_test}>
               Время прохождения теста:
             </span>
