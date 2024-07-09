@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import classes from "./GuessSTM.module.scss";
 import { useAuthContext } from "../../../contexts/authContext";
+import guessSTMStore from "../../../stores/guessSTMStore";
 import DecorativeElements from "../../ui/DecorativeElements";
 import Pifagor from "../../../assets/images/logoSTM/Pifagor.jpg";
 import Younland from "../../../assets/images/logoSTM/Younland.jpg";
@@ -119,6 +120,16 @@ let newArrProductSTM = [...arrProductSTM];
 const GuessSTM: React.FC = () => {
   const { user, loginStatus } = useAuthContext();
 
+  const { createLastTry, isLoading } = guessSTMStore;
+
+  const [dataOfLastTry, setDataOfLastTry] = useState({
+    brandName: "",
+    selectedOption: "",
+    correctOption: "",
+    answer_status: false,
+    userId: 0,
+  });
+
   const [showSTM, setShowSTM] = useState([
     Object.keys(arrProductSTM[0]),
     Object.values(arrProductSTM[0]),
@@ -143,7 +154,17 @@ const GuessSTM: React.FC = () => {
   }, [userChoise.length]);
 
   const startCondition = () => {
-    console.log("Верных ответов - " + correct + "   " + "НЕ верных ответов - " + uncorrect);
+    userChoise.map(async el => {
+        // console.log(el[3] == "Верно" ? true : false);
+        createLastTry({
+        brandName: el[0],
+        selectedOption: el[1],
+        correctOption: el[2],
+        answer_status: el[3] == "Верно" ? true : false,
+        userId: user.id,
+      });      
+    });
+    console.log(isLoading);
     nextItem = 0;
     userChoise = [];
     newArrProductSTM = [...arrProductSTM];
@@ -204,7 +225,9 @@ const GuessSTM: React.FC = () => {
             </span>
             <span>Верно: {correct}</span>
             <span>Неверно: {uncorrect}</span>
-            <span id="userName">{user.id}. {user.fio}</span>
+            <span id="userName">
+              {user.id}. {user.fio}
+            </span>
             {/* <input id="userNameValue" type="text" placeholder="ФИО"></input> */}
             <span className={classes.label_time_test}>
               Время прохождения теста:
