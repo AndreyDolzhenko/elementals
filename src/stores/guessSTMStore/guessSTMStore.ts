@@ -1,6 +1,6 @@
 import { makeObservable, observable, runInAction, action } from "mobx";
 
-import guessSTMSevice from "./guessSTMStore.sevice";
+import guessSTMService from "./guessSTMStore.service";
 import { CreateLastTry } from "../../types";
 
 class GuessSTMStore {
@@ -23,7 +23,7 @@ class GuessSTMStore {
         this.setLoading();
 
         try {
-            await guessSTMSevice.createLastTry(body);
+            await guessSTMService.createLastTry(body);
         } catch(e) {
             this.isError = true;
             console.error(e);

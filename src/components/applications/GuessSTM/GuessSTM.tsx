@@ -154,12 +154,12 @@ const GuessSTM: React.FC = () => {
   }, [userChoise.length]);
 
   const startCondition = () => {
-    userChoise.map(async el => {
-        // console.log(el[3] == "Верно" ? true : false);
-        createLastTry({
-        brandName: el[0],
-        selectedOption: el[1],
-        correctOption: el[2],
+    userChoise.map(async el => { 
+      // console.log((el[1]).join(""));       
+      createLastTry({
+        brandName: el[0][0],
+        selectedOption: (el[1]).join(""),
+        correctOption: el[2][0],
         answer_status: el[3] == "Верно" ? true : false,
         userId: user.id,
       });      
