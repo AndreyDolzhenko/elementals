@@ -5,8 +5,10 @@ import Enter from "../Enter";
 import ChoiseApp from "../ChoiseApp";
 import Time from "../ui/Time";
 import MyCarousel from "../ui/MyCarousel";
+import {UserId} from "../../types/GuessSTM";
 import usersStore from "../../stores/usersStore";
 import { useAuthContext } from "../../contexts/authContext";
+import GuessSTMStore from "../../stores/guessSTMStore";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
@@ -25,7 +27,10 @@ const Admin: React.FC = observer(() => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [display, setDisplay] = useState("none");
   const [usersList, setUsersList] = useState([]);
+  const [userIdData, setUserIdData] = useState(0);
+
   const { user, loginStatus } = useAuthContext();
+  
   
   // const object = JSON.parse(user);
 
@@ -53,9 +58,10 @@ const Admin: React.FC = observer(() => {
         <ul>
           {usersList.map(el => <li>{Object.values(el)}</li>)}
         </ul>
-        {/* <ul>{
-          users.length !== 0 ? Object.values(users[0]).map(el => <li>{el}</li>) : ""
-          }</ul> */}
+       
+       <p>Введите ID пользователя, данные которого Вы хотите получить:</p>
+       <input type="text" placeholder="ID пользователя" onChange={(e) => setUserIdData(+e.target.value)} />
+       <button onClick={() => console.log(GuessSTMStore.lastTryResult(userIdData))}>Получить данные по ID</button>
 
         <ChoiseApp
           display={display}

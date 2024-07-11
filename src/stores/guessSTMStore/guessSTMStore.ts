@@ -1,7 +1,8 @@
 import { makeObservable, observable, runInAction, action } from "mobx";
 
 import guessSTMService from "./guessSTMStore.service";
-import { CreateLastTry } from "../../types";
+import LastTryResult from "./guessSTMStore.service";
+import { CreateLastTry, UserId } from "../../types";
 
 class GuessSTMStore {
     isLoading = true;
@@ -30,6 +31,19 @@ class GuessSTMStore {
         } finally {
             this.isLoading = false;
         }    
+    }
+
+    lastTryResult =async (body: UserId) => {
+        this.setLoading();
+
+        try {
+            await guessSTMService.lastTryResult(body);
+        } catch(e) {
+            this.isError = true;
+            console.error(e);
+        } finally {
+            this.isLoading = false;
+        }  
     }
 
 }
