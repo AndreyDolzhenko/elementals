@@ -8,7 +8,7 @@ import MyCarousel from "../ui/MyCarousel";
 import {UserId} from "../../types/GuessSTM";
 import usersStore from "../../stores/usersStore";
 import { useAuthContext } from "../../contexts/authContext";
-import GuessSTMStore from "../../stores/guessSTMStore";
+import guessSTMStore from "../../stores/guessSTMStore";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
@@ -28,6 +28,7 @@ const Admin: React.FC = observer(() => {
   const [display, setDisplay] = useState("none");
   const [usersList, setUsersList] = useState([]);
   const [userIdData, setUserIdData] = useState(0);
+  const [resultsLastTry, setResultsLastTry] = useState([{}]);
 
   const { user, loginStatus } = useAuthContext();
   
@@ -61,7 +62,22 @@ const Admin: React.FC = observer(() => {
        
        <p>Введите ID пользователя, данные которого Вы хотите получить:</p>
        <input type="text" placeholder="ID пользователя" onChange={(e) => setUserIdData(+e.target.value)} />
-       <button onClick={() => console.log(GuessSTMStore.lastTryResult(userIdData))}>Получить данные по ID</button>
+       <button onClick={async () => {
+        setResultsLastTry([]);
+          const result = await guessSTMStore.getLastTryResults(userIdData);
+          setResultsLastTry(result);
+         console.log(result)
+       }
+        }>Получить данные по ID</button>
+      <ol>
+          {resultsLastTry.map((el) => 
+          <li style={{listStyleType: "inherit"}}>
+            <img src={Object.values(el)[0]} width={"20%"} alt=""></img>
+            <div>{Object.values(el)[1]}</div>
+            <div>{Object.values(el)[2]}</div>            
+            <div>{Object.values(el)[3] === true ? "Верно" : "Неверно"}</div>
+           </li>)}
+        </ol>       
 
         <ChoiseApp
           display={display}

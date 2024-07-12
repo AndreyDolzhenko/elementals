@@ -6,8 +6,8 @@ class GuessSTMService {
         return axiosApi.post("/guess-stm/last-try", body);
     };
 
-    lastTryResult = async (body: UserId): Promise<LastTryResult> => {
-        return axiosApi.post("/guess-stm/last-try/data", body);
+    getLastTryResults = async (userId: number): Promise<LastTryResult[]> => {
+        return axiosApi.get("/guess-stm/last-try", {params: {userId}});
     }
 };
 
