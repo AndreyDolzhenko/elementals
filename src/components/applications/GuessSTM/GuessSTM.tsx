@@ -120,7 +120,7 @@ let newArrProductSTM = [...arrProductSTM];
 const GuessSTM: React.FC = () => {
   const { user, loginStatus } = useAuthContext();
 
-  const { createLastTry, isLoading } = guessSTMStore;
+  const { createLastTry, isLoading, createAttempts } = guessSTMStore;
 
   const [dataOfLastTry, setDataOfLastTry] = useState({
     brandName: "",
@@ -154,15 +154,19 @@ const GuessSTM: React.FC = () => {
   }, [userChoise.length]);
 
   const startCondition = () => {
-    userChoise.map(async el => { 
-      // console.log((el[1]).join(""));       
+    createAttempts({
+      correct: correct,
+      uncorrect: uncorrect,
+      userId: user.id,
+    });
+    userChoise.map(async (el) => {
       createLastTry({
         brandName: el[0][0],
-        selectedOption: (el[1]).join(""),
+        selectedOption: el[1].join(""),
         correctOption: el[2][0],
         answer_status: el[3] == "Верно" ? true : false,
         userId: user.id,
-      });      
+      });
     });
     console.log(isLoading);
     nextItem = 0;

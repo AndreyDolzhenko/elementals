@@ -2,50 +2,76 @@ import { makeObservable, observable, runInAction, action } from "mobx";
 
 import guessSTMService from "./guessSTMStore.service";
 import { CreateLastTry } from "../../types";
+import { CreateAttempts } from "../../types/GuessSTM";
 
 class GuessSTMStore {
-    isLoading = true;
+  isLoading = true;
 
-    isError = false;
+  isError = false;
 
-    constructor() {
-        makeObservable(this, {            
-            createLastTry: action.bound,
-        });
+  constructor() {
+    makeObservable(this, {
+      createLastTry: action.bound,
+    });
+  }
+
+  setLoading = () => {
+    this.isLoading = true;
+    this.isError = false;
+  };
+
+  createLastTry = async (body: CreateLastTry) => {
+    this.setLoading();
+
+    try {
+      await guessSTMService.createLastTry(body);
+    } catch (e) {
+      this.isError = true;
+      console.error(e);
+    } finally {
+      this.isLoading = false;
     }
+  };
 
-    setLoading = () => {
-        this.isLoading = true;
-        this.isError = false;
-    };
+  getLastTryResults = async (userId: number) => {
+    this.setLoading();
 
-    createLastTry = async (body: CreateLastTry) => {
-        this.setLoading();
-
-        try {
-            await guessSTMService.createLastTry(body);
-        } catch(e) {
-            this.isError = true;
-            console.error(e);
-        } finally {
-            this.isLoading = false;
-        }    
+    try {
+      const result = await guessSTMService.getLastTryResults(userId);
+      return result;
+    } catch (e) {
+      this.isError = true;
+      console.error(e);
+    } finally {
+      this.isLoading = false;
     }
+  };
 
-    getLastTryResults = async (userId: number) => {
-        this.setLoading();
+  createAttempts = async (body: CreateAttempts) => {
+    this.setLoading();
 
-        try {
-            const result = await guessSTMService.getLastTryResults(userId);
-            return result;
-        } catch(e) {
-            this.isError = true;
-            console.error(e);
-        } finally {
-            this.isLoading = false;
-        }  
+    try {
+      await guessSTMService.createAttempts(body);
+    } catch (e) {
+      this.isError = true;
+      console.error(e);
+    } finally {
+      this.isLoading = false;
     }
+  };
 
+  getAttempts = async (userId: number) => {
+    this.setLoading();
+    try {
+      const result = guessSTMService.getAttempts(userId);
+      return result;
+    } catch (e) {
+      this.isError = true;
+      console.log(e);
+    } finally {
+      this.isLoading = false;
+    }
+  };
 }
 
 export default new GuessSTMStore();

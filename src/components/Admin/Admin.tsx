@@ -27,10 +27,14 @@ const Admin: React.FC = observer(() => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [display, setDisplay] = useState("none");
   const [usersList, setUsersList] = useState([]);
+  const [attempts, setAttempts] = useState([]);
+  const [showUser, setShowUser] = useState();
   const [userIdData, setUserIdData] = useState(0);
   const [resultsLastTry, setResultsLastTry] = useState([{}]);
 
   const { user, loginStatus } = useAuthContext();
+
+  const {getLastTryResults, getAttempts} = guessSTMStore;
   
   
   // const object = JSON.parse(user);
@@ -56,19 +60,48 @@ const Admin: React.FC = observer(() => {
           Выберите нужное действие:
         </p>
         <p onClick={() => setUsersList(users)}>Загрузить сотрудников из базы</p>
-        <ul>
-          {usersList.map(el => <li>{Object.values(el)}</li>)}
-        </ul>
-       
+        <div className={classes.table_place}>
+        <table>
+          <tr>
+            <td className={classes.users_table}>id</td>
+            <td className={classes.users_table}>Логин</td>
+            <td className={classes.users_table}>ФИО</td>
+            <td className={classes.users_table}>e-mail</td></tr>
+          {usersList.map(el => <tr>
+            <td className={classes.users_table}>{Object.values(el)[0]}</td>
+            <td className={classes.users_table}>{Object.values(el)[1]}</td>
+            <td className={classes.users_table}>{Object.values(el)[2]}</td>
+            <td className={classes.users_table}>{Object.values(el)[3]}</td></tr>)}
+        </table>
+        </div>
        <p>Введите ID пользователя, данные которого Вы хотите получить:</p>
        <input type="text" placeholder="ID пользователя" onChange={(e) => setUserIdData(+e.target.value)} />
        <button onClick={async () => {
         setResultsLastTry([]);
-          const result = await guessSTMStore.getLastTryResults(userIdData);
+          usersList.map(el => Object.values(el)[0] === userIdData ? setShowUser(Object.values(el)[2]) : console.log(el[2]));
+          const result = await getLastTryResults(userIdData);
+          const attemptsRes = await getAttempts(userIdData); 
+          setAttempts(attemptsRes);       
           setResultsLastTry(result);
-         console.log(result)
+          // console.log(userIdData);
        }
         }>Получить данные по ID</button>
+        <div className={classes.user_results}>
+          <div style={{textDecoration: "underline"}}>Имя пользователя: {showUser}</div>
+        <table>
+          <tr>
+            <td className={classes.users_table}>Дата прохождения</td>
+            <td className={classes.users_table}>Правильных ответов</td>
+            <td className={classes.users_table}>Неправильных ответов</td>            
+            </tr>
+          {attempts.map(el => <tr>
+            <td className={classes.users_table}>{Object.values(el)[3]}</td>
+            <td className={classes.users_table}>{Object.values(el)[0]}</td>
+            <td className={classes.users_table}>{Object.values(el)[1]}</td>            
+            </tr>)}
+        </table>
+        <div style={{textDecoration: "underline"}}>Результаты последнего тестирования:</div>
+        </div>
       <ol>
           {resultsLastTry.map((el) => 
           <li style={{listStyleType: "inherit"}}>
