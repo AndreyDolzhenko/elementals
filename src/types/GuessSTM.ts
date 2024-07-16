@@ -19,10 +19,18 @@ export type LastTryResult = {
   updatedAt: Date;
 };
 
+export type Attempt = {
+  correct: number;
+  uncorrect: number;  
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type CreateAttempts = {    
-  correct: number,
-  uncorrect: number,  
-  userId: number,
+  correct: number;
+  uncorrect: number;  
+  userId: number;
 }
 
 export type GetAttempts = Omit<CreateAttempts, "userId">

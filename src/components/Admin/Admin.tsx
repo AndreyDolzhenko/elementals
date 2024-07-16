@@ -5,7 +5,15 @@ import Enter from "../Enter";
 import ChoiseApp from "../ChoiseApp";
 import Time from "../ui/Time";
 import MyCarousel from "../ui/MyCarousel";
-import {UserId} from "../../types/GuessSTM";
+import { UserId } from "../../types/GuessSTM";
+import {
+  User,
+  Attempt,
+  GetAttempts,
+  CreateAttempts,
+  LastTry,
+  LastTryResult,
+} from "../../types";
 import usersStore from "../../stores/usersStore";
 import { useAuthContext } from "../../contexts/authContext";
 import guessSTMStore from "../../stores/guessSTMStore";
@@ -23,20 +31,18 @@ import classes from "./Admin.module.scss";
 import { Link } from "react-router-dom";
 
 const Admin: React.FC = observer(() => {
- 
   const [isModalOpen, setModalOpen] = useState(false);
   const [display, setDisplay] = useState("none");
-  const [usersList, setUsersList] = useState([]);
-  const [attempts, setAttempts] = useState([]);
-  const [showUser, setShowUser] = useState();
+  const [usersList, setUsersList] = useState<User[]>([]);
+  const [attempts, setAttempts] = useState<GetAttempts[]>([]);
+  const [showUser, setShowUser] = useState("");
   const [userIdData, setUserIdData] = useState(0);
-  const [resultsLastTry, setResultsLastTry] = useState([{}]);
+  const [resultsLastTry, setResultsLastTry] = useState<LastTryResult[]>([]);
 
   const { user, loginStatus } = useAuthContext();
 
-  const {getLastTryResults, getAttempts} = guessSTMStore;
-  
-  
+  const { getLastTryResults, getAttempts } = guessSTMStore;
+
   // const object = JSON.parse(user);
 
   const { fetchAllUsers, users } = usersStore;
@@ -61,56 +67,100 @@ const Admin: React.FC = observer(() => {
         </p>
         <p onClick={() => setUsersList(users)}>Загрузить сотрудников из базы</p>
         <div className={classes.table_place}>
-        <table>
-          <tr>
-            <td className={classes.users_table}>id</td>
-            <td className={classes.users_table}>Логин</td>
-            <td className={classes.users_table}>ФИО</td>
-            <td className={classes.users_table}>e-mail</td></tr>
-          {usersList.map(el => <tr>
-            <td className={classes.users_table}>{Object.values(el)[0]}</td>
-            <td className={classes.users_table}>{Object.values(el)[1]}</td>
-            <td className={classes.users_table}>{Object.values(el)[2]}</td>
-            <td className={classes.users_table}>{Object.values(el)[3]}</td></tr>)}
-        </table>
+          <table>
+            <tbody>
+              <tr>
+                <td className={classes.users_table}>id</td>
+                <td className={classes.users_table}>Логин</td>
+                <td className={classes.users_table}>ФИО</td>
+                <td className={classes.users_table}>e-mail</td>
+              </tr>
+              {usersList.map((el, index) => (
+                <tr key={index}>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[0]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[1]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[2]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[3]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-       <p>Введите ID пользователя, данные которого Вы хотите получить:</p>
-       <input type="text" placeholder="ID пользователя" onChange={(e) => setUserIdData(+e.target.value)} />
-       <button onClick={async () => {
-        setResultsLastTry([]);
-          usersList.map(el => Object.values(el)[0] === userIdData ? setShowUser(Object.values(el)[2]) : console.log(el[2]));
-          const result = await getLastTryResults(userIdData);
-          const attemptsRes = await getAttempts(userIdData); 
-          setAttempts(attemptsRes);       
-          setResultsLastTry(result);
-          // console.log(userIdData);
-       }
-        }>Получить данные по ID</button>
+        <p>Введите ID пользователя, данные которого Вы хотите получить:</p>
+        <input
+          type="text"
+          placeholder="ID пользователя"
+          onChange={(e) => setUserIdData(+e.target.value)}
+        />
+        <button
+          onClick={async () => {
+            setResultsLastTry([]);
+            usersList.map((el) =>
+              el.id === userIdData
+                ? setShowUser(el.fio)
+                : false
+            );
+            const result = (await getLastTryResults(userIdData)) ?? [];
+            const attemptsRes = (await getAttempts(userIdData)) ?? [];
+            setAttempts(attemptsRes);
+            setResultsLastTry(result);
+            result.length === 0 ? setShowUser("Нет пользователя с таким Id!") : true;
+            console.log(result.length);
+          }}
+        >
+          Получить данные по ID
+        </button>
         <div className={classes.user_results}>
-          <div style={{textDecoration: "underline"}}>Имя пользователя: {showUser}</div>
-        <table>
-          <tr>
-            <td className={classes.users_table}>Дата прохождения</td>
-            <td className={classes.users_table}>Правильных ответов</td>
-            <td className={classes.users_table}>Неправильных ответов</td>            
-            </tr>
-          {attempts.map(el => <tr>
-            <td className={classes.users_table}>{Object.values(el)[3]}</td>
-            <td className={classes.users_table}>{Object.values(el)[0]}</td>
-            <td className={classes.users_table}>{Object.values(el)[1]}</td>            
-            </tr>)}
-        </table>
-        <div style={{textDecoration: "underline"}}>Результаты последнего тестирования:</div>
+          <div style={{ 
+            textDecoration: "underline",
+            color: showUser === "Нет пользователя с таким Id!" ? "red" : "black",
+         }}>
+            Имя пользователя: {showUser}
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td className={classes.users_table}>Дата прохождения</td>
+                <td className={classes.users_table}>Правильных ответов</td>
+                <td className={classes.users_table}>Неправильных ответов</td>
+              </tr>
+              {attempts.map((el, index) => (
+                <tr key={index}>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[3]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[0]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[1]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ textDecoration: "underline" }}>
+            Результаты последнего тестирования:
+          </div>
         </div>
-      <ol>
-          {resultsLastTry.map((el) => 
-          <li style={{listStyleType: "inherit"}}>
-            <img src={Object.values(el)[0]} width={"20%"} alt=""></img>
-            <div>{Object.values(el)[1]}</div>
-            <div>{Object.values(el)[2]}</div>            
-            <div>{Object.values(el)[3] === true ? "Верно" : "Неверно"}</div>
-           </li>)}
-        </ol>       
+        <ol>
+          {resultsLastTry.map((el, index) => (
+            <li key={index} style={{ listStyleType: "inherit" }}>
+              <img src={el.brandName} width={"20%"} alt=""></img>
+              <div>{el.selectedOption}</div>
+              <div>{el.correctOption}</div>
+              <div>{Object.values(el)[3] === true ? "Верно" : "Неверно"}</div>
+            </li>
+          ))}
+        </ol>
 
         <ChoiseApp
           display={display}
@@ -118,13 +168,13 @@ const Admin: React.FC = observer(() => {
         />
         <Time />
         <div className={classes.media}>
-        <span>Supported by:</span>
-        <Spotify />
-        <GooglePodcast />
-        <Youtube />
-      </div>
+          <span>Supported by:</span>
+          <Spotify />
+          <GooglePodcast />
+          <Youtube />
+        </div>
       </section>
-      
+
       <section className={classes.third_block}>
         <ClipBlack className={classes.clips} />
         <div className={classes.block_description_three}>
@@ -133,7 +183,7 @@ const Admin: React.FC = observer(() => {
             корпоративного университета{" "}
             <span style={{ color: "#cd4631" }}>ОФИСМАГ</span>
           </div>
-        </div>        
+        </div>
       </section>
       <section className={classes.footer}>
         <div className={classes.footer_content}>© ОФИСМАГ, 2024</div>
