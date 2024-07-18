@@ -6,7 +6,9 @@ import ChoiseApp from "../ChoiseApp";
 import Time from "../ui/Time";
 import MyCarousel from "../ui/MyCarousel";
 import usersStore from "../../stores/usersStore";
+import guessSTMStore from "../../stores/guessSTMStore";
 import { useAuthContext } from "../../contexts/authContext";
+import { User, LastTryResult, GetAttempts } from "../../types";
 import Spotify from "../../assets/icons/spotify.svg?react";
 import GooglePodcast from "../../assets/icons/googlePodcast.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
@@ -49,10 +51,15 @@ const PersonalPage: React.FC = observer(() => {
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
-
   const [display, setDisplay] = useState("none");
+  const [resultsLastTry, setResultsLastTry] = useState<LastTryResult[]>([]);
+  const [usersList, setUsersList] = useState<User[]>([]);
+  const [userIdData, setUserIdData] = useState(0);
+  const [showUser, setShowUser] = useState("");
+  const [attempts, setAttempts] = useState<GetAttempts[]>([]);
 
   const { user, loginStatus } = useAuthContext();
+  const { getLastTryResults, getAttempts } = guessSTMStore;
 
   // const object = JSON.parse(user);
 
@@ -62,9 +69,16 @@ const PersonalPage: React.FC = observer(() => {
     fetchAllUsers();
   }, [fetchAllUsers]);
 
+  useEffect(() => {
+    setAttempts([]);
+    setResultsLastTry([]);
+    setShowUser("");
+  }, [user.id]);
+
   return (
     <div
       className={classes.component}
+      style={{marginLeft: "50px"}}
       onClick={() => (display !== "none" ? setDisplay("none") : false)}
     >
       {isModalOpen ? <Enter modalClose={() => setModalOpen(false)} /> : ""}
@@ -92,6 +106,68 @@ const PersonalPage: React.FC = observer(() => {
         <Youtube />
       </div>
       </section>
+
+      <button
+          onClick={async () => {
+            setResultsLastTry([]);
+            usersList.map((el) =>
+              el.id === userIdData
+                ? setShowUser(el.fio)
+                : false
+            );
+            const result = (await getLastTryResults(user.id)) ?? [];
+            const attemptsRes = (await getAttempts(user.id)) ?? [];
+            setAttempts(attemptsRes);
+            setResultsLastTry(result);
+            setShowUser(user.fio);
+            console.log(result.length);
+          }}
+        >
+          Получить данные по сотруднику
+        </button>
+        <div className={classes.user_results}>
+          <div style={{ 
+            textDecoration: "underline",
+            color: showUser === "Нет пользователя с таким Id!" ? "red" : "black",
+         }}>
+            Имя пользователя: {showUser}
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td className={classes.users_table}>Дата прохождения</td>
+                <td className={classes.users_table}>Правильных ответов</td>
+                <td className={classes.users_table}>Неправильных ответов</td>
+              </tr>
+              {attempts.map((el, index) => (
+                <tr key={index}>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[3]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[0]}
+                  </td>
+                  <td className={classes.users_table}>
+                    {Object.values(el)[1]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ textDecoration: "underline" }}>
+            Результаты последнего тестирования:
+          </div>
+        </div>
+        <ol>
+          {resultsLastTry.map((el, index) => (
+            <li key={index} style={{ listStyleType: "inherit" }}>
+              <img src={el.brandName} width={"20%"} alt=""></img>
+              <div>{el.selectedOption}</div>
+              <div>{el.correctOption}</div>
+              <div>{Object.values(el)[3] === true ? "Верно" : "Неверно"}</div>
+            </li>
+          ))}
+        </ol>
       
       <section className={classes.third_block}>
         <ClipBlack className={classes.clips} />

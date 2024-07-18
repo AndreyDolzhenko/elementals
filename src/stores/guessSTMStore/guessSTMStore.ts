@@ -47,6 +47,18 @@ class GuessSTMStore {
     }
   };
 
+  deleteLastTryResults = async (userId: number) => {
+    this.setLoading();
+    try {
+      await guessSTMService.deleteLastTryResults(userId);      
+    } catch (e) {
+      this.isError = true;
+      console.error(e);
+    } finally {
+      this.isLoading = false;
+    }
+  };
+
   createAttempts = async (body: CreateAttempts) => {
     this.setLoading();
 

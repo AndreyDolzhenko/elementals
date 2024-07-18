@@ -14,6 +14,10 @@ class GuessSTMService {
         return axiosApi.get("/guess-stm/last-try", {params: {userId}});
     }
 
+    deleteLastTryResults = async (userId: number): Promise<void> => {
+        return axiosApi.delete("/guess-stm/last-try", {params: {userId}});
+    }
+
     getAttempts = async (userId: number): Promise<GetAttempts[]> => {
         return axiosApi.get("/guess-stm/attempts", {params: {userId}});
     }

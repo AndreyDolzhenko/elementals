@@ -12,7 +12,9 @@ function App() {
 
   
   return (
-    <div>
+    <div style={{display: "flex",
+      flexDirection: "column",
+      alignItems: "center"}}>
       {isModalOpen ? (
         <Enter modalClose={() => setModalOpen(false)} />
       ) : (

@@ -120,7 +120,7 @@ let newArrProductSTM = [...arrProductSTM];
 const GuessSTM: React.FC = () => {
   const { user, loginStatus } = useAuthContext();
 
-  const { createLastTry, isLoading, createAttempts } = guessSTMStore;
+  const { createLastTry, isLoading, createAttempts, deleteLastTryResults } = guessSTMStore;
 
   const [dataOfLastTry, setDataOfLastTry] = useState({
     brandName: "",
@@ -153,26 +153,47 @@ const GuessSTM: React.FC = () => {
     };
   }, [userChoise.length]);
 
-  const startCondition = () => {
-    createAttempts({
+  const startCondition = async () => {
+    await createAttempts({
       correct: correct,
       uncorrect: uncorrect,
       userId: user.id,
     });
-    userChoise.map(async (el) => {
-      createLastTry({
-        brandName: el[0][0],
-        selectedOption: el[1].join(""),
-        correctOption: el[2][0],
-        answer_status: el[3] == "Верно" ? true : false,
-        userId: user.id,
+
+    await deleteLastTryResults(user.id);   
+
+    try {
+
+      const promises = userChoise.map(async (el) => {
+        const lastTry = {
+          brandName: el[0][0],
+          selectedOption: el[1].join(""),
+          correctOption: el[2][0],
+          answer_status: el[3] == "Верно" ? true : false,
+          userId: user.id,
+        }
+        console.log("lastTry - ", lastTry);
+
+        try {          
+          await createLastTry(lastTry);
+
+        } catch (error) {
+          console.log("createLastTry - ", error);
+        }
+
       });
-    });
-    console.log(isLoading);
-    nextItem = 0;
-    userChoise = [];
-    newArrProductSTM = [...arrProductSTM];
-    setButton("Выбор СТМ");
+      
+      // await Promise.all(promises);
+  
+      console.log(isLoading);
+      nextItem = 0;
+      userChoise = [];
+      newArrProductSTM = [...arrProductSTM];
+      setButton("Выбор СТМ");
+
+    } catch (error) {
+      console.log("Promiss - " + error);
+    }
   };
 
   ///////////////
@@ -316,8 +337,8 @@ const GuessSTM: React.FC = () => {
 
           <div>Результаты:</div>
           <div>
-            {userChoise.map((el) => (
-              <div className={classes.block_result}>
+            {userChoise.map((el, index) => (
+              <div key={index} className={classes.block_result}>
                 <div className={classes.show_result}>
                   <img style={{ width: "100%" }} src={el[0]} alt="" />
                 </div>
