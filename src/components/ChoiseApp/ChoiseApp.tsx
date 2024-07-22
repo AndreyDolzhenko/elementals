@@ -21,8 +21,8 @@ const ChoiseApp: React.FC<Props> = ({ display, changeDisplay }) => {
       <div style={{ display: display }} className={classes.windowApps}>
         <ul>
           {Object.entries(applications).map((el, index) => (
-            <Link to={el[1]}>
-              <li key={index}>{el[0]}</li>
+            <Link key={index} to={el[1]}>
+              <li>{el[0]}</li>
             </Link>
           ))}
         </ul>

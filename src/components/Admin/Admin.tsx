@@ -112,8 +112,8 @@ const Admin: React.FC = observer(() => {
             const attemptsRes = (await getAttempts(userIdData)) ?? [];
             setAttempts(attemptsRes);
             setResultsLastTry(result);
-            result.length === 0 ? setShowUser("Нет пользователя с таким Id!") : true;
-            console.log(result.length);
+            result.length === 0 ? setShowUser("Отсутствует пользователь или результаты тестирования!") : true;
+            // console.log(result);
           }}
         >
           Получить данные по ID
@@ -121,7 +121,7 @@ const Admin: React.FC = observer(() => {
         <div className={classes.user_results}>
           <div style={{ 
             textDecoration: "underline",
-            color: showUser === "Нет пользователя с таким Id!" ? "red" : "black",
+            color: showUser === "Отсутствует пользователь или результаты тестирования!" ? "red" : "black",
          }}>
             Имя пользователя: {showUser}
           </div>
