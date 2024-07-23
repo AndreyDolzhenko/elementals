@@ -265,7 +265,7 @@ const GuessSTM: React.FC = () => {
                 className={classes.input_time_test}
                 id="input_time-test"
                 type="text"
-                value="60"
+                // value="60"
               ></input>
               <span className={classes.label_time_test}>сек.</span>
             </span>

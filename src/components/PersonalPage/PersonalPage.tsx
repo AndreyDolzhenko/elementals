@@ -120,7 +120,7 @@ const PersonalPage: React.FC = observer(() => {
             setAttempts(attemptsRes);
             setResultsLastTry(result);
             setShowUser(user.fio);
-            console.log(result.length);
+            console.log(result);
           }}
         >
           Получить данные по сотруднику
@@ -139,10 +139,14 @@ const PersonalPage: React.FC = observer(() => {
                 <td className={classes.users_table}>Правильных ответов</td>
                 <td className={classes.users_table}>Неправильных ответов</td>
               </tr>
-              {attempts.map((el, index) => (
+              {attempts.map((el, index) => {
+                // console.log(Object.values(el));
+                return (
                 <tr key={index}>
                   <td className={classes.users_table}>
-                    {Object.values(el)[3]}
+                    {
+                    Object.values(el)[3]
+                    }
                   </td>
                   <td className={classes.users_table}>
                     {Object.values(el)[0]}
@@ -151,7 +155,7 @@ const PersonalPage: React.FC = observer(() => {
                     {Object.values(el)[1]}
                   </td>
                 </tr>
-              ))}
+              )})}
             </tbody>
           </table>
           <div style={{ textDecoration: "underline" }}>

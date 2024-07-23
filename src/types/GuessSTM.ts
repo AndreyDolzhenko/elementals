@@ -15,8 +15,10 @@ export type LastTryResult = {
   correctOption: string;
   answer_status: boolean;
   userId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  // createdAt: Date;
+  // updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Attempt = {

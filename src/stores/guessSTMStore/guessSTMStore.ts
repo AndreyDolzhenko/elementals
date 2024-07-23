@@ -38,6 +38,7 @@ class GuessSTMStore {
 
     try {
       const result = await guessSTMService.getLastTryResults(userId);
+      console.log(result);
       return result;
     } catch (e) {
       this.isError = true;
