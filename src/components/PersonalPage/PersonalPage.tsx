@@ -119,8 +119,7 @@ const PersonalPage: React.FC = observer(() => {
             const attemptsRes = (await getAttempts(user.id)) ?? [];
             setAttempts(attemptsRes);
             setResultsLastTry(result);
-            setShowUser(user.fio);
-            console.log(result);
+            setShowUser(user.fio);            
           }}
         >
           Получить данные по сотруднику
@@ -139,8 +138,7 @@ const PersonalPage: React.FC = observer(() => {
                 <td className={classes.users_table}>Правильных ответов</td>
                 <td className={classes.users_table}>Неправильных ответов</td>
               </tr>
-              {attempts.map((el, index) => {
-                // console.log(Object.values(el));
+              {attempts.map((el, index) => {                
                 return (
                 <tr key={index}>
                   <td className={classes.users_table}>

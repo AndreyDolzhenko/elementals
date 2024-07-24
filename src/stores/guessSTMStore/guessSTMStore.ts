@@ -27,7 +27,7 @@ class GuessSTMStore {
       await guessSTMService.createLastTry(body);
     } catch (e) {
       this.isError = true;
-      // console.error(e);
+      console.error(e, "brandName - ", body.brandName);
     } finally {
       this.isLoading = false;
     }
@@ -37,12 +37,10 @@ class GuessSTMStore {
     this.setLoading();
 
     try {
-      const result = await guessSTMService.getLastTryResults(userId);
-      console.log(result);
+      const result = await guessSTMService.getLastTryResults(userId);     
       return result;
     } catch (e) {
-      this.isError = true;
-      // console.error(e);
+      this.isError = true;     
     } finally {
       this.isLoading = false;
     }
@@ -53,8 +51,7 @@ class GuessSTMStore {
     try {
       await guessSTMService.deleteLastTryResults(userId);      
     } catch (e) {
-      this.isError = true;
-      // console.error(e);
+      this.isError = true;      
     } finally {
       this.isLoading = false;
     }
@@ -66,8 +63,7 @@ class GuessSTMStore {
     try {
       await guessSTMService.createAttempts(body);
     } catch (e) {
-      this.isError = true;
-      // console.error(e);
+      this.isError = true;      
     } finally {
       this.isLoading = false;
     }
@@ -80,7 +76,6 @@ class GuessSTMStore {
       return result;
     } catch (e) {
       this.isError = true;
-      // console.log(e);
     } finally {
       this.isLoading = false;
     }

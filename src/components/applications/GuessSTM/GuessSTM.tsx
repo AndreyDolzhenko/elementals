@@ -168,18 +168,18 @@ const GuessSTM: React.FC = () => {
       const promises = userChoise.map(async (el) => {
         const lastTry = {
           brandName: el[0][0],
-          selectedOption: el[1].join(""),
-          correctOption: el[2][0],
+          selectedOption: el[1].join("").slice(0, 250),
+          correctOption: el[2][0].slice(0, 250),
           answer_status: el[3] == "Верно" ? true : false,
           userId: user.id,
         }
         // console.log("lastTry - ", lastTry);
 
-        try {          
+        try {                 
           await createLastTry(lastTry);
 
         } catch (error) {
-          // console.log("createLastTry - ", error);
+          console.log("createLastTry - ", error);
         }
 
       });
