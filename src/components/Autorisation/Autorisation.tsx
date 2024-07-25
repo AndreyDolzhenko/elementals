@@ -69,11 +69,6 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
       });      
   };
 
-// useEffect(() => {
-//   console.log(user);
-//   navigate(user.login === "Admin" ? "/admin" : "/personal-page");
-// }, [user.login]);
-
 // Убираем красную заливку, если стерли логин или пароль в форме
   useEffect(() => {
     
@@ -117,8 +112,7 @@ const Autorisation: React.FC<Props> = ({ modalClose }) => {
           name="login"
           placeholder="Логин"
           value={formContent.login}
-          onChange={(e) => handleChange(e)}
-          // onKeyDown={(e) => (e.key == "Tab" ? console.log(formContent) : "")}
+          onChange={(e) => handleChange(e)}         
         />
         {/* / блок с инпутом для ввода пароля, компонентами для скрытия и предъявления пароля */}
         <p style={{
