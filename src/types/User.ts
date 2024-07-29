@@ -3,6 +3,7 @@ export type User = {
   login: string;
   fio: string;
   mail: string;
+  profile: string;
 };
 
 export type CreateUser = {
@@ -10,6 +11,7 @@ export type CreateUser = {
   password: string;
   fio: string;
   mail: string;
+  profile: string;
 };
 
 export type AuthUser = {

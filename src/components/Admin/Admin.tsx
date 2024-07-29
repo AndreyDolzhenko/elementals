@@ -102,16 +102,18 @@ const Admin: React.FC = observer(() => {
         />
         <button
           onClick={async () => {
-            setResultsLastTry([]);
-            usersList.map((el) =>
+            setResultsLastTry([]);            
+            usersList.map((el) => {
               el.id === userIdData
                 ? setShowUser(el.fio)
-                : false
+                : false;
+                console.log(el.profile);
+              }
             );
             const result = (await getLastTryResults(userIdData)) ?? [];
             const attemptsRes = (await getAttempts(userIdData)) ?? [];
             setAttempts(attemptsRes);
-            setResultsLastTry(result);
+            setResultsLastTry(result);            
             result.length === 0 ? setShowUser("Отсутствует пользователь или результаты тестирования!") : true;
             // console.log(result);
           }}
