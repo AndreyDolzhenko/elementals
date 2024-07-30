@@ -38,6 +38,7 @@ const Admin: React.FC = observer(() => {
   const [showUser, setShowUser] = useState("");
   const [userIdData, setUserIdData] = useState(0);
   const [resultsLastTry, setResultsLastTry] = useState<LastTryResult[]>([]);
+  const [profile, setProfile] = useState("");
 
   const { user, loginStatus } = useAuthContext();
 
@@ -45,7 +46,7 @@ const Admin: React.FC = observer(() => {
 
   // const object = JSON.parse(user);
 
-  const { fetchAllUsers, users } = usersStore;
+  const { fetchAllUsers, users, updateUser } = usersStore;
 
   useEffect(() => {
     fetchAllUsers();
@@ -62,6 +63,8 @@ const Admin: React.FC = observer(() => {
         <p className={classes.brand}>Добрый день, {user.fio}</p>
         <p className={classes.brand}>Вы вошли под правами Администратора</p>
         {/* <p className={classes.brand}>Добрый день, {users.map(el => el.login === "semen" ? "semen" : false)}</p> */}
+        
+        
         <p className={classes.main_text_second_part}>
           Выберите нужное действие:
         </p>
@@ -120,6 +123,15 @@ const Admin: React.FC = observer(() => {
         >
           Получить данные по ID
         </button>
+        <p 
+        style={{cursor: "pointer"}}
+        onClick={() => updateUser(user.profile = profile, userIdData)}
+        >Присвоить роль пользователю</p>
+        <select name="profile" id="profile" onClick={(e: React.MouseEvent<HTMLElement>) => setProfile(e.target.value)}>
+          <option value="user">пользователь</option>
+          <option value="supervisor">руководитель</option>
+          <option value="admin">администратор</option>
+        </select>
         <div className={classes.user_results}>
           <div style={{ 
             textDecoration: "underline",

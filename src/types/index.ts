@@ -1,4 +1,4 @@
-export type { User, CreateUser, AuthUser, SignIn } from "./User";
+export type { User, CreateUser, AuthUser, SignIn, UpdateUser } from "./User";
 export type {
   LastTry,
   CreateLastTry,

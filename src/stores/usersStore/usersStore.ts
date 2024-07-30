@@ -1,7 +1,7 @@
 import { makeObservable, observable, runInAction, action } from "mobx";
 
 import usersService from "./usersStore.service";
-import { User, CreateUser } from "../../types";
+import { User, CreateUser, UpdateUser } from "../../types";
 
 class UsersStore {
     users: User[] = [];
@@ -43,6 +43,23 @@ class UsersStore {
 
         try {
             await usersService.createUser(body);
+            const users = await usersService.getAllUsers();
+            runInAction(() => {
+                this.users = users;
+            });            
+        } catch (e) {
+            this.isError = true;
+            console.error("Error fetching users: ", e);
+        } finally {
+            this.isLoading = false;
+        }
+    };
+
+    updateUser = async (body: UpdateUser, id:number) => {
+        this.setLoading();
+
+        try {
+            await usersService.updateUser(body, id);
             const users = await usersService.getAllUsers();
             runInAction(() => {
                 this.users = users;
