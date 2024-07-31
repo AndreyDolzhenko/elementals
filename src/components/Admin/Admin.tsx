@@ -13,6 +13,7 @@ import {
   CreateAttempts,
   LastTry,
   LastTryResult,
+  UpdateUser
 } from "../../types";
 import usersStore from "../../stores/usersStore";
 import { useAuthContext } from "../../contexts/authContext";
@@ -38,7 +39,12 @@ const Admin: React.FC = observer(() => {
   const [showUser, setShowUser] = useState("");
   const [userIdData, setUserIdData] = useState(0);
   const [resultsLastTry, setResultsLastTry] = useState<LastTryResult[]>([]);
-  const [profile, setProfile] = useState("");
+  const [userData, setUserData] = useState({
+    login: "",
+    fio: "",
+    mail: "",
+    profile: "",
+});
 
   const { user, loginStatus } = useAuthContext();
 
@@ -51,6 +57,10 @@ const Admin: React.FC = observer(() => {
   useEffect(() => {
     fetchAllUsers();
   }, [fetchAllUsers]);
+
+  const handleUpdateProfile = (dataUpdate: UpdateUser, userId: number) => {
+    updateUser({profile: dataUpdate.profile}, userId)
+  }
 
   return (
     <div
@@ -125,9 +135,9 @@ const Admin: React.FC = observer(() => {
         </button>
         <p 
         style={{cursor: "pointer"}}
-        onClick={() => updateUser(user.profile = profile, userIdData)}
+        onClick={() => handleUpdateProfile(userData, userIdData)}
         >Присвоить роль пользователю</p>
-        <select name="profile" id="profile" onClick={(e: React.MouseEvent<HTMLElement>) => setProfile(e.target.value)}>
+        <select name="profile" id="profile" onClick={(e: React.MouseEvent<HTMLSelectElement>) => setUserData((prev) => ({...prev, profile: e.target.value}))}>
           <option value="user">пользователь</option>
           <option value="supervisor">руководитель</option>
           <option value="admin">администратор</option>
